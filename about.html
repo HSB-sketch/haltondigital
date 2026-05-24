@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Halton Digital & AI - Our Story & Team</title>
+    <meta name="description" content="Learn about Harry and the Halton Digital & AI team. 20+ years of tech expertise serving Milton, Burlington, and Oakville.">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 150px 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .timeline-year {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--cyan);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .timeline-content {
+            padding-left: 2rem;
+            border-left: 2px solid var(--cyan);
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 2rem;
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            border-color: var(--cyan);
+            transform: translateY(-8px);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, var(--cyan), var(--cyan2));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 3px solid var(--cyan);
+        }
+
+        .team-member h3 {
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            color: var(--cyan);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .value-card {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.08) 0%, transparent 100%);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: var(--radius);
+            text-align: center;
+        }
+
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-card h3 {
+            color: #ffffff;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-item {
+                grid-template-columns: 100px 1fr;
+                gap: 1.5rem;
+            }
+
+            .timeline-year {
+                font-size: 1.2rem;
+            }
+
+            .timeline-content {
+                padding-left: 1.5rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Halton <span>Digital & AI</span></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About</a>
+                <a href="web-design.html">Web Design</a>
+                <a href="pc-building.html">PC Building</a>
+                <a href="iptv.html">IPTV</a>
+                <a href="contact.html" class="cta-btn">Get In Touch</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero" style="min-height: 60vh; padding: 6rem 2rem 4rem;">
+            <div class="hero-content">
+                <h1>The Halton Digital Story</h1>
+                <p style="font-size: 1.2rem;">20 years of tech expertise, built on trust and local relationships</p>
+            </div>
+        </section>
+
+        <!-- Harry's Story -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">Our Founder</span>
+                <h2>Meet Harry</h2>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem;">
+                    <div>
+                        <div style="width: 100%; height: 400px; background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, transparent 100%); border-radius: 12px; border: 2px solid var(--cyan); display: flex; align-items: center; justify-content: center; font-size: 4rem;">
+                            👨‍💼
+                        </div>
+                    </div>
+
+                    <div>
+                        <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                            Harry has been the backbone of Milton's tech community for over 20 years. A resident since 2006, he watched local small businesses struggle with technology they didn't understand and services they couldn't afford.
+                        </p>
+
+                        <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                            With an IT degree, deep expertise in networking and datacenter infrastructure, and years of experience as a hardware specialist, Harry decided to do something about it.
+                        </p>
+
+                        <h3 style="color: var(--cyan); margin-top: 2rem;">The Mission</h3>
+                        <p>
+                            To provide small businesses in the Halton region with enterprise-grade technology solutions at competitive prices. No call centers. No runaround. Just honest, expert tech support from someone who genuinely cares about your success.
+                        </p>
+
+                        <div style="background: rgba(0, 217, 255, 0.1); border-left: 4px solid var(--cyan); padding: 1.5rem; margin-top: 2rem; border-radius: 8px;">
+                            <p style="color: var(--text); margin: 0;">
+                                <strong>"Our job isn't to sell you technology. It's to solve your problems and make your business run better."</strong>
+                            </p>
+                            <p style="color: var(--muted); margin-top: 0.5rem; margin-bottom: 0;">— Harry</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <span class="section-label">Journey</span>
+                <h2>How We Grew</h2>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2004</div>
+                        <div class="timeline-content">
+                            <h3>The Beginning</h3>
+                            <p>Harry starts freelance tech work, helping local businesses with networking, hardware, and custom builds. Word of mouth grows the client base quickly.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <h3>Specialization</h3>
+                            <p>Realizing small businesses need complete tech solutions, Harry expands into web design and IPTV services to be a one-stop shop.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2016</div>
+                        <div class="timeline-content">
+                            <h3>Canadian Infrastructure Focus</h3>
+                            <p>After seeing too many businesses use overseas hosting, Harry commits to Canadian providers and datacentres. Your data stays home.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <h3>Building a Team</h3>
+                            <p>With 500+ projects and hundreds of happy clients, Harry brings on expert developers, specialists, and a sales manager to scale responsibly.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-year">2024</div>
+                        <div class="timeline-content">
+                            <h3>Halton Digital & AI</h3>
+                            <p>Officially founded to continue serving underserved small businesses with cutting-edge solutions at fair prices. More than just a service provider — a technology partner.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">Our Team</span>
+                <h2>Meet the Experts</h2>
+                <p style="font-size: 1.1rem; max-width: 700px; margin-bottom: 3rem;">
+                    A diverse team of developers, specialists, and strategists dedicated to making technology work for you.
+                </p>
+
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="team-avatar">👨‍💼</div>
+                        <h3>Harry</h3>
+                        <div class="team-role">Founder & Tech Lead</div>
+                        <p>20+ years in IT, networking, and infrastructure. The visionary behind Halton Digital & AI.</p>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="team-avatar">👨‍💻</div>
+                        <h3>Chris</h3>
+                        <div class="team-role">Lead Developer</div>
+                        <p>Full-stack developer specializing in responsive, modern web applications. Portfolio showcase includes award-winning projects.</p>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="team-avatar">👨‍💻</div>
+                        <h3>Arjan</h3>
+                        <div class="team-role">Developer</div>
+                        <p>Expert in frontend and backend development. Passionate about clean code and user-centered design.</p>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="team-avatar">⚙️</div>
+                        <h3>Sajjad</h3>
+                        <div class="team-role">Dev Specialist</div>
+                        <p>Infrastructure and deployment specialist. Ensures every project is optimized, secure, and scalable.</p>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="team-avatar">📱</div>
+                        <h3>Amrita</h3>
+                        <div class="team-role">Sales Manager</div>
+                        <p>Your main point of contact. Ensures smooth communication and that your needs are always prioritized.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why We're Different -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <span class="section-label">What Sets Us Apart</span>
+                <h2>Five Reasons To Choose Halton Digital & AI</h2>
+
+                <div class="values-grid">
+                    <div class="value-card">
+                        <div class="value-icon">📍</div>
+                        <h3>Local Expertise</h3>
+                        <p>Based in Milton. We know your market, understand your challenges, and are invested in your success.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">🇨🇦</div>
+                        <h3>Canadian First</h3>
+                        <p>All data hosted on Canadian servers. Your information stays protected within Canadian borders. No compromises.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">⏱️</div>
+                        <h3>20+ Years Trust</h3>
+                        <p>Two decades of proven results for small businesses. References available. Real relationships, not transactions.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">🎯</div>
+                        <h3>All-In-One Partner</h3>
+                        <p>Web design, PC building, IPTV services — everything you need from one trusted team you already know.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <div class="value-icon">💰</div>
+                        <h3>Competitive Pricing</h3>
+                        <p>Premium quality without the premium markup. We believe great tech shouldn't break the bank for small businesses.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <div class="container">
+                <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(0, 168, 204, 0.08) 100%); border: 1px solid rgba(0, 217, 255, 0.3); border-radius: 12px; padding: 4rem 2rem; text-align: center;">
+                    <h2 style="margin-bottom: 1rem;">Ready To Work With Us?</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Let's talk about how we can help your business grow with the right technology solutions.
+                    </p>
+                    <a href="contact.html" class="cta-btn">Schedule Your Consultation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="web-design.html">Web Design & Development</a></li>
+                        <li><a href="pc-building.html">Custom PC Building</a></li>
+                        <li><a href="iptv.html">Premium IPTV Services</a></li>
+                        <li><a href="faq.html">FAQ & Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Our Work</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Get In Touch</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Phone:</strong>
+                            <a href="tel:+14169884163">+1 (416) 988-4163</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <a href="mailto:HaltonIPTV@gmail.com">HaltonIPTV@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Location:</strong>
+                            <span>Milton, Ontario</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <p>Serving Milton, Burlington, Oakville, and surrounding communities throughout the Halton Region.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Halton Digital & AI. All rights reserved. | Milton, Ontario</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,800 +1,581 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Premium IPTV Services in Milton, Ontario. Crystal-clear 4K streaming, 50,000+ live channels, on-demand content, and local support.">
-<meta name="keywords" content="IPTV Milton Ontario, streaming services, live TV, on-demand content, 4K IPTV">
-<title>IPTV Services Milton, Ontario | Halton Digital & AI</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Figtree:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium IPTV Services - Halton Digital & AI</title>
+    <meta name="description" content="Premium IPTV services starting at $7.99/month with customized content packages and 4K boxes. North American, European, South Asian, and East Asian content.">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+        }
 
-  :root {
-    --ink: #05091a;
-    --ink2: #0d1530;
-    --ink3: #141d3a;
-    --surface: #1a2345;
-    --border: rgba(255,255,255,0.08);
-    --border2: rgba(255,255,255,0.14);
-    --cyan: #00e5ff;
-    --cyan2: #00b8d9;
-    --amber: #ffc145;
-    --text: #e8edf8;
-    --muted: #7a8aad;
-    --dim: #3d4f72;
-    --success: #00d46f;
-    --radius: 12px;
-    --radius-lg: 20px;
-  }
+        .package-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
 
-  html { scroll-behavior: smooth; }
+        .package-card {
+            background: linear-gradient(135deg, var(--ink2) 0%, rgba(26, 31, 58, 0.5) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
 
-  body {
-    font-family: 'Figtree', sans-serif;
-    background: var(--ink);
-    color: var(--text);
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
+        .package-card:hover {
+            border-color: var(--cyan);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.1);
+        }
 
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1rem 2.5rem;
-    background: rgba(5,9,26,0.72);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
-    transition: background .3s;
-  }
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    font-size: 1.15rem;
-    color: var(--text);
-    text-decoration: none;
-    letter-spacing: -0.02em;
-  }
-  .nav-logo span { color: var(--cyan); }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
-  .nav-links a {
-    color: var(--muted); text-decoration: none; font-size: .9rem;
-    font-weight: 500; transition: color .2s;
-  }
-  .nav-links a:hover { color: var(--text); }
-  .nav-cta {
-    background: var(--cyan); color: var(--ink);
-    padding: .5rem 1.25rem; border-radius: 8px;
-    text-decoration: none; font-weight: 600; font-size: .875rem;
-    transition: opacity .2s, transform .15s;
-  }
-  .nav-cta:hover { opacity: .88; transform: translateY(-1px); }
+        .package-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
 
-  #hero {
-    min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: center;
-    padding: 8rem 2.5rem 5rem;
-    position: relative; overflow: hidden;
-  }
-  .hero-grid {
-    position: absolute; inset: 0; z-index: 0;
-    background-image:
-      linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
-    background-size: 60px 60px;
-    mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, black 30%, transparent 100%);
-  }
-  .hero-glow {
-    position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
-    width: 700px; height: 500px;
-    background: radial-gradient(ellipse, rgba(0,229,255,0.12) 0%, transparent 70%);
-    z-index: 0;
-  }
-  .hero-content { position: relative; z-index: 1; max-width: 820px; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: .5rem;
-    background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.25);
-    color: var(--cyan); padding: .35rem .85rem; border-radius: 100px;
-    font-size: .8rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase;
-    margin-bottom: 1.75rem;
-    animation: fadeUp .6s ease both;
-  }
-  .hero-badge::before { content: '●'; font-size: .45rem; animation: pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+        .package-name {
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
 
-  h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2.5rem, 5.5vw, 4.5rem);
-    font-weight: 800;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
-    color: #fff;
-    margin-bottom: 1.5rem;
-    animation: fadeUp .6s .1s ease both;
-  }
-  h1 em {
-    font-style: normal;
-    color: var(--cyan);
-  }
-  .hero-sub {
-    font-size: 1.15rem; color: var(--muted); max-width: 540px;
-    line-height: 1.7; margin-bottom: 2.5rem;
-    animation: fadeUp .6s .2s ease both;
-  }
-  .hero-actions {
-    display: flex; gap: 1rem; flex-wrap: wrap;
-    animation: fadeUp .6s .3s ease both;
-  }
-  .btn-primary {
-    background: var(--cyan); color: var(--ink);
-    padding: .85rem 2rem; border-radius: 10px;
-    text-decoration: none; font-weight: 700; font-size: .95rem;
-    transition: opacity .2s, transform .15s; letter-spacing: -.01em;
-    border: none; cursor: pointer;
-  }
-  .btn-primary:hover { opacity: .88; transform: translateY(-2px); }
+        .package-channels {
+            color: var(--cyan);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
 
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
+        .channels-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
 
-  section { padding: 6rem 2.5rem; }
-  .section-tag {
-    font-family: 'DM Mono', monospace;
-    font-size: .75rem; color: var(--cyan);
-    letter-spacing: .12em; text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-  .section-tag::before { content: '// '; opacity: .5; }
-  h2 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(1.8rem, 3.5vw, 2.75rem);
-    font-weight: 800; line-height: 1.1;
-    letter-spacing: -0.03em; color: #fff;
-    margin-bottom: 1rem;
-  }
-  h2 em { font-style: normal; color: var(--cyan); }
-  h3 {
-    font-family: 'Syne', sans-serif;
-    font-size: 1.3rem; font-weight: 700;
-    color: #fff; margin-bottom: .75rem;
-    letter-spacing: -0.02em;
-  }
-  .section-sub { font-size: 1rem; color: var(--muted); max-width: 500px; line-height: 1.7; }
-  .section-header { margin-bottom: 3.5rem; }
+        .channels-list li {
+            padding: 0.5rem 0;
+            color: var(--muted);
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
 
-  /* FEATURES GRID */
-  #features { background: var(--ink2); }
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5px;
-    background: var(--border);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    margin-bottom: 4rem;
-  }
-  .feature-card {
-    background: var(--ink2);
-    padding: 2.5rem;
-    position: relative;
-    transition: background .25s;
-    cursor: default;
-  }
-  .feature-card:hover { background: var(--ink3); }
-  .feature-icon {
-    width: 52px; height: 52px;
-    background: rgba(0,229,255,0.1);
-    border: 1px solid rgba(0,229,255,0.2);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem; margin-bottom: 1.75rem;
-    transition: background .25s;
-  }
-  .feature-card:hover .feature-icon { background: rgba(0,229,255,0.18); }
-  .feature-desc { font-size: .9rem; color: var(--muted); line-height: 1.7; }
+        .channels-list li::before {
+            content: '✓';
+            color: var(--cyan);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
 
-  /* SPECS SECTION */
-  #specs {
-    max-width: 1200px; margin: 0 auto;
-    padding: 6rem 2.5rem;
-  }
-  .specs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-  .spec-box {
-    background: var(--ink2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    text-align: center;
-    transition: border-color .2s, transform .2s;
-  }
-  .spec-box:hover { border-color: var(--cyan); transform: translateY(-4px); }
-  .spec-number {
-    font-family: 'Syne', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--cyan);
-    margin-bottom: .5rem;
-  }
-  .spec-label { font-size: .85rem; color: var(--muted); font-weight: 500; }
+        .box-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
 
-  /* GLOBAL CONTENT REGIONS */
-  #regions { background: var(--ink2); }
-  .regions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-  .region-card {
-    background: var(--ink3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 2rem;
-    transition: border-color .2s, transform .2s, background .2s;
-    cursor: default;
-  }
-  .region-card:hover {
-    border-color: var(--cyan);
-    transform: translateY(-8px);
-    background: rgba(0,229,255,0.05);
-  }
-  .region-flag {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    display: block;
-  }
-  .region-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-    color: var(--cyan);
-  }
-  .region-content {
-    font-size: .9rem;
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-  .region-features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: .5rem;
-  }
-  .feature-tag {
-    display: inline-block;
-    background: rgba(0,229,255,0.12);
-    color: var(--cyan);
-    font-size: .75rem;
-    font-weight: 600;
-    padding: .3rem .7rem;
-    border-radius: 100px;
-    letter-spacing: .05em;
-  }
+        .box-card {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
 
-  /* DEVICE COMPATIBILITY */
-  #devices { background: var(--ink2); }
-  .devices-container {
-    max-width: 1200px; margin: 0 auto;
-    padding: 0 2.5rem;
-  }
-  .device-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2.5rem;
-  }
-  .device-badge {
-    background: var(--ink3);
-    border: 1px solid var(--border2);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    text-align: center;
-    transition: border-color .2s, background .2s;
-    cursor: pointer;
-  }
-  .device-badge:hover { border-color: var(--cyan); background: rgba(0,229,255,0.05); }
-  .device-emoji { font-size: 2.5rem; margin-bottom: .5rem; }
-  .device-name { font-weight: 600; color: var(--text); font-size: .95rem; }
+        .box-card:hover {
+            border-color: var(--cyan);
+            transform: translateY(-4px);
+        }
 
-  /* SUPPORT SECTION */
-  #support {
-    max-width: 1000px; margin: 0 auto;
-    padding: 6rem 2.5rem;
-  }
-  .support-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 3rem;
-    align-items: start;
-  }
-  .support-item {
-    display: flex;
-    gap: 1.5rem;
-  }
-  .support-icon {
-    width: 48px; height: 48px; flex-shrink: 0;
-    background: rgba(0,229,255,0.12);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-  }
-  .support-content {}
-  .support-title { font-weight: 600; color: var(--text); margin-bottom: .3rem; }
-  .support-desc { font-size: .9rem; color: var(--muted); line-height: 1.6; }
+        .box-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
 
-  /* CTA SECTION */
-  #cta {
-    background: linear-gradient(135deg, rgba(0,229,255,0.1) 0%, rgba(0,181,217,0.05) 100%);
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
-  .cta-container {
-    max-width: 900px; margin: 0 auto;
-    padding: 6rem 2.5rem;
-    text-align: center;
-  }
-  .cta-title { font-size: 2rem; margin-bottom: 1rem; color: #fff; }
-  .cta-sub { font-size: 1.1rem; color: var(--muted); margin-bottom: 2rem; }
-  .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  .btn-secondary {
-    background: transparent;
-    color: var(--text);
-    padding: .85rem 2rem;
-    border: 1px solid var(--border2);
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: .95rem;
-    transition: border-color .2s, background .2s;
-  }
-  .btn-secondary:hover {
-    border-color: var(--cyan);
-    background: rgba(0,229,255,0.05);
-  }
+        .box-model {
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
 
-  /* FAQ SECTION */
-  #faq {
-    max-width: 800px; margin: 0 auto;
-    padding: 6rem 2.5rem;
-  }
-  .faq-items {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-  .faq-item {
-    background: var(--ink2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.75rem;
-    cursor: pointer;
-    transition: border-color .2s;
-  }
-  .faq-item:hover { border-color: var(--cyan); }
-  .faq-question {
-    font-weight: 600;
-    color: var(--text);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-  }
-  .faq-icon {
-    color: var(--cyan);
-    font-size: 1.2rem;
-    transition: transform .3s;
-  }
-  .faq-item.active .faq-icon { transform: rotate(180deg); }
-  .faq-answer {
-    color: var(--muted);
-    font-size: .9rem;
-    line-height: 1.7;
-    margin-top: 1rem;
-    display: none;
-  }
-  .faq-item.active .faq-answer { display: block; }
+        .box-specs {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
 
-  /* FOOTER */
-  footer {
-    background: var(--ink2);
-    border-top: 1px solid var(--border);
-    padding: 2rem 2.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  .footer-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800;
-    color: var(--text);
-    font-size: .95rem;
-  }
-  .footer-logo span { color: var(--cyan); }
-  .footer-copy { font-size: .8rem; color: var(--dim); }
+        .features-comparison {
+            overflow-x: auto;
+            margin-top: 3rem;
+        }
 
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: linear-gradient(135deg, var(--ink2) 0%, rgba(26, 31, 58, 0.5) 100%);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
 
-  @media (max-width: 768px) {
-    nav { padding: 1rem 1.25rem; }
-    .nav-links { display: none; }
-    #hero { padding: 6rem 1.25rem 3rem; }
-    section { padding: 4rem 1.25rem; }
-    .support-grid { grid-template-columns: 1fr; }
-    .cta-buttons { flex-direction: column; }
-    footer { flex-direction: column; align-items: flex-start; }
-  }
-</style>
+        .comparison-table thead {
+            background: rgba(0, 217, 255, 0.1);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            padding: 1.5rem;
+            text-align: left;
+            color: var(--cyan);
+            font-weight: 600;
+            border-right: 1px solid var(--border);
+        }
+
+        .comparison-table th:last-child {
+            border-right: none;
+        }
+
+        .comparison-table td {
+            padding: 1.5rem;
+            border-right: 1px solid var(--border);
+            color: var(--muted);
+        }
+
+        .comparison-table td:last-child {
+            border-right: none;
+        }
+
+        .comparison-table tbody tr {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .feature-check {
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .setup-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .setup-step {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.08) 0%, transparent 100%);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: var(--radius);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--cyan);
+            color: var(--ink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            .package-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .box-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-comparison {
+                overflow-x: auto;
+            }
+
+            .comparison-table th,
+            .comparison-table td {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Halton <span>Digital & AI</span></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="web-design.html">Web Design</a>
+                <a href="pc-building.html">PC Building</a>
+                <a href="iptv.html" class="active">IPTV</a>
+                <a href="contact.html" class="cta-btn">Get In Touch</a>
+            </nav>
+        </div>
+    </header>
 
-<nav>
-  <a href="/" class="nav-logo">Halton <span>Digital</span> & AI</a>
-  <ul class="nav-links">
-    <li><a href="#features">Features</a></li>
-    <li><a href="#specs">Specs</a></li>
-    <li><a href="#support">Support</a></li>
-  </ul>
-  <a href="#cta" class="nav-cta">Get Started</a>
-</nav>
+    <main>
+        <!-- Hero -->
+        <section class="hero" style="min-height: 60vh;">
+            <div class="hero-content">
+                <h1>Premium IPTV Services</h1>
+                <p style="font-size: 1.2rem;">Thousands of live channels. Customized content. Starting at just $7.99/month with latest 4K boxes in stock.</p>
+                <div class="hero-ctas">
+                    <button class="cta-btn" onclick="document.getElementById('packages').scrollIntoView()">View Packages</button>
+                    <a href="contact.html" class="cta-btn cta-btn-outline">Get Started</a>
+                </div>
+            </div>
+        </section>
 
-<section id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow"></div>
-  <div class="hero-content">
-    <div class="hero-badge">📺 Premium IPTV Service for Milton, Ontario</div>
-    <h1>Crystal-Clear <em>Streaming Entertainment</em><br>Right Here in Milton</h1>
-    <p class="hero-sub">Experience the ultimate in streaming entertainment with 50,000+ live channels, stunning 4K quality, and lightning-fast local support from your Milton neighbours.</p>
-    <div class="hero-actions">
-      <a href="#cta" class="btn-primary">Start Your Free Trial</a>
-    </div>
-  </div>
-</section>
+        <!-- Overview -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">What We Offer</span>
+                <h2>Premium IPTV Made Simple</h2>
 
-<section id="features">
-  <div class="section-header reveal">
-    <div class="section-tag">Why Choose Our IPTV?</div>
-    <h2>Entertainment <em>Reimagined</em></h2>
-  </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem;">
+                    <div>
+                        <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                            We're resellers of multiple premium IPTV providers with access to thousands of live channels, sports, movies, and on-demand content. Unlike rigid packages, we specialize in <strong>customized content</strong> tailored to your interests.
+                        </p>
 
-  <div class="features-grid">
-    <div class="feature-card reveal">
-      <div class="feature-icon">📡</div>
-      <h3>50,000+ Live Channels</h3>
-      <p class="feature-desc">Access thousands of live TV channels across sports, news, movies, international content, and more. Everything you love, right at your fingertips.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🎬</div>
-      <h3>Unlimited On-Demand</h3>
-      <p class="feature-desc">Browse an extensive library of movies and TV series. New content added daily. Watch what you want, when you want, no restrictions.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">⚡</div>
-      <h3>4K Ultra HD Streaming</h3>
-      <p class="feature-desc">Experience crystal-clear picture quality with 4K resolution on supported devices. Sports, movies, and shows have never looked better.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">📱</div>
-      <h3>Multi-Device Support</h3>
-      <p class="feature-desc">Stream on TVs, tablets, smartphones, and computers. Watch in any room of your home, or take it on the go—all from one account.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">🌍</div>
-      <h3>International Content</h3>
-      <p class="feature-desc">Channels from around the world in multiple languages. Punjabi, Hindi, Arabic, Mandarin, Spanish, and many more available 24/7.</p>
-    </div>
-    <div class="feature-card reveal">
-      <div class="feature-icon">⚙️</div>
-      <h3>Easy Installation</h3>
-      <p class="feature-desc">Professional setup by our Milton-based technicians. Get everything installed, tested, and optimized in under 1 hour—no hassle, no surprises.</p>
-    </div>
-  </div>
-</section>
+                        <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                            Whether you want sports, entertainment, news, or international content, we design your perfect package. And with the latest 4K IPTV boxes in stock, you're ready to stream immediately.
+                        </p>
 
-<section id="specs">
-  <div class="section-header reveal">
-    <div class="section-tag">By The Numbers</div>
-    <h2>Premium <em>Streaming Performance</em></h2>
-    <p class="section-sub" style="margin-top: 1rem;">Experience entertainment without compromise. Here's what sets our IPTV service apart from the rest.</p>
-  </div>
+                        <ul class="feature-list">
+                            <li>Thousands of live channels available</li>
+                            <li>Customized content packages</li>
+                            <li>4K-ready IPTV boxes in stock</li>
+                            <li>Reliable, local support</li>
+                            <li>Setup and installation included</li>
+                        </ul>
+                    </div>
 
-  <div class="specs-grid">
-    <div class="spec-box reveal">
-      <div class="spec-number">50K+</div>
-      <div class="spec-label">Live Channels</div>
-    </div>
-    <div class="spec-box reveal">
-      <div class="spec-number">90K+</div>
-      <div class="spec-label">On-Demand Titles</div>
-    </div>
-    <div class="spec-box reveal">
-      <div class="spec-number">4K UHD</div>
-      <div class="spec-label">Maximum Quality</div>
-    </div>
-    <div class="spec-box reveal">
-      <div class="spec-number">99.9%</div>
-      <div class="spec-label">Uptime Guarantee</div>
-    </div>
-    <div class="spec-box reveal">
-      <div class="spec-number">5</div>
-      <div class="spec-label">Simultaneous Streams</div>
-    </div>
-    <div class="spec-box reveal">
-      <div class="spec-number">1hr</div>
-      <div class="spec-label">Professional Setup</div>
-    </div>
-  </div>
-</section>
+                    <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, transparent 100%); border-radius: 12px; padding: 3rem; border: 1px solid var(--border); min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">📺</div>
+                            <p style="font-size: 1.1rem;">Thousands of channels at your fingertips</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<section id="regions">
-  <div class="section-header reveal">
-    <div class="section-tag">🌍 Global Entertainment</div>
-    <h2>Content From <em>Around The World</em></h2>
-    <p class="section-sub" style="margin-top: 1rem;">Access premium entertainment from five continents. Sports, movies, news, and shows in your language.</p>
-  </div>
+        <!-- Content Packages -->
+        <section class="section" id="packages" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <span class="section-label">Content Options</span>
+                <h2>Customizable Content Packages</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 3rem; max-width: 700px;">
+                    We don't believe in one-size-fits-all. Our packages are customizable based on what you want to watch.
+                </p>
 
-  <div class="regions-grid">
-    <div class="region-card reveal">
-      <div class="region-flag">🇺🇸 🇨🇦 🇲🇽</div>
-      <h3>North American</h3>
-      <p class="region-content">MLB, NBA, NFL, NHL sports. Hollywood blockbusters. Popular US & Canadian networks. Mexican telenovelas and channels.</p>
-      <div class="region-features">
-        <span class="feature-tag">Sports</span>
-        <span class="feature-tag">Movies</span>
-        <span class="feature-tag">News</span>
-        <span class="feature-tag">Entertainment</span>
-      </div>
-    </div>
+                <div class="package-grid">
+                    <div class="package-card">
+                        <div class="package-icon">🌎</div>
+                        <div class="package-name">North American</div>
+                        <div class="package-channels">Premium Channels Included</div>
+                        <ul class="channels-list">
+                            <li>US & Canadian channels</li>
+                            <li>Sports networks</li>
+                            <li>Entertainment</li>
+                            <li>News & local</li>
+                            <li>HBO, ESPN, TSN</li>
+                        </ul>
+                        <a href="contact.html" class="cta-btn" style="display: block; text-align: center;">Learn More</a>
+                    </div>
 
-    <div class="region-card reveal reveal-delay-1">
-      <div class="region-flag">🇬🇧 🇫🇷 🇩🇪 🇮🇹</div>
-      <h3>European</h3>
-      <p class="region-content">Premier League, La Liga football. BBC, France 24, Deutsche Welle. European cinema and premium dramas.</p>
-      <div class="region-features">
-        <span class="feature-tag">Football</span>
-        <span class="feature-tag">Cinema</span>
-        <span class="feature-tag">Documentaries</span>
-        <span class="feature-tag">News</span>
-      </div>
-    </div>
+                    <div class="package-card">
+                        <div class="package-icon">🇪🇺</div>
+                        <div class="package-name">European</div>
+                        <div class="package-channels">Multi-Language Options</div>
+                        <ul class="channels-list">
+                            <li>UK, France, Germany</li>
+                            <li>Spain, Italy, Netherlands</li>
+                            <li>Scandinavian content</li>
+                            <li>European sports</li>
+                            <li>Multiple languages</li>
+                        </ul>
+                        <a href="contact.html" class="cta-btn" style="display: block; text-align: center;">Learn More</a>
+                    </div>
 
-    <div class="region-card reveal reveal-delay-2">
-      <div class="region-flag">🇵🇱 🇷🇺 🇺🇦 🇷🇴</div>
-      <h3>Eastern European</h3>
-      <p class="region-content">Russian, Ukrainian, Polish, Romanian channels. Premier League coverage. Eastern European cinema and cultural content.</p>
-      <div class="region-features">
-        <span class="feature-tag">Football</span>
-        <span class="feature-tag">Culture</span>
-        <span class="feature-tag">Cinema</span>
-        <span class="feature-tag">Music</span>
-      </div>
-    </div>
+                    <div class="package-card">
+                        <div class="package-icon">🇮🇳</div>
+                        <div class="package-name">South Asian</div>
+                        <div class="package-channels">Hindi, Punjabi & More</div>
+                        <ul class="channels-list">
+                            <li>Indian channels</li>
+                            <li>Pakistani content</li>
+                            <li>Bollywood movies</li>
+                            <li>Cricket & sports</li>
+                            <li>News & entertainment</li>
+                        </ul>
+                        <a href="contact.html" class="cta-btn" style="display: block; text-align: center;">Learn More</a>
+                    </div>
 
-    <div class="region-card reveal">
-      <div class="region-flag">🇮🇳 🇵🇰 🇵🇭 🇯🇵 🇨🇳</div>
-      <h3>Asian</h3>
-      <p class="region-content">Bollywood & Indian cinema. Pakistani, Philippine, Japanese channels. Chinese entertainment. Cricket, anime, K-dramas.</p>
-      <div class="region-features">
-        <span class="feature-tag">Bollywood</span>
-        <span class="feature-tag">K-Drama</span>
-        <span class="feature-tag">Cricket</span>
-        <span class="feature-tag">Anime</span>
-      </div>
-    </div>
+                    <div class="package-card">
+                        <div class="package-icon">🇨🇳</div>
+                        <div class="package-name">East Asian</div>
+                        <div class="package-channels">Chinese, Korean, Japanese</div>
+                        <ul class="channels-list">
+                            <li>Chinese channels</li>
+                            <li>Korean content</li>
+                            <li>Japanese programming</li>
+                            <li>Asian dramas & movies</li>
+                            <li>Variety & entertainment</li>
+                        </ul>
+                        <a href="contact.html" class="cta-btn" style="display: block; text-align: center;">Learn More</a>
+                    </div>
 
-    <div class="region-card reveal reveal-delay-1">
-      <div class="region-flag">🇧🇷 🇦🇷 🇨🇴 🇵🇪 🇨🇱</div>
-      <h3>Latin American</h3>
-      <p class="region-content">Brazilian Globo channels. Argentine & Colombian content. Copa América football. Spanish-language cinema and series.</p>
-      <div class="region-features">
-        <span class="feature-tag">Telenovela</span>
-        <span class="feature-tag">Football</span>
-        <span class="feature-tag">Cinema</span>
-        <span class="feature-tag">Sports</span>
-      </div>
-    </div>
+                    <div class="package-card">
+                        <div class="package-icon">⚽</div>
+                        <div class="package-name">Sports Bundle</div>
+                        <div class="package-channels">All Major Sports</div>
+                        <ul class="channels-list">
+                            <li>Hockey & basketball</li>
+                            <li>Soccer & football</li>
+                            <li>Baseball & cricket</li>
+                            <li>UFC & boxing</li>
+                            <li>International sports</li>
+                        </ul>
+                        <a href="contact.html" class="cta-btn" style="display: block; text-align: center;">Learn More</a>
+                    </div>
 
-    <div class="region-card reveal reveal-delay-2">
-      <div class="region-flag">🌐 + More</div>
-      <h3>International</h3>
-      <p class="region-content">Middle Eastern channels. African entertainment. Caribbean content. Plus hundreds more international networks.</p>
-      <div class="region-features">
-        <span class="feature-tag">Diverse</span>
-        <span class="feature-tag">Multilingual</span>
-        <span class="feature-tag">Growing</span>
-        <span class="feature-tag">Global</span>
-      </div>
-    </div>
-  </div>
-</section>
+                    <div class="package-card">
+                        <div class="package-icon">🎬</div>
+                        <div class="package-name">Premium Mix</div>
+                        <div class="package-channels">Everything Bundle</div>
+                        <ul class="channels-list">
+                            <li>All content options</li>
+                            <li>Maximum channels</li>
+                            <li>All languages</li>
+                            <li>Movies & sports</li>
+                            <li>Best value</li>
+                        </ul>
+                        <a href="contact.html" class="cta-btn" style="display: block; text-align: center;">Learn More</a>
+                    </div>
+                </div>
 
-<section id="devices">
-  <div class="devices-container">
-    <div class="section-header reveal">
-      <div class="section-tag">Stream Anywhere</div>
-      <h2>Works on <em>All Your Devices</em></h2>
-      <p class="section-sub" style="margin-top: 1rem;">Compatible with virtually any device. Watch on your TV, phone, tablet, or computer.</p>
-    </div>
+                <div style="background: rgba(0, 217, 255, 0.1); border: 1px solid rgba(0, 217, 255, 0.3); border-radius: 12px; padding: 2rem; margin-top: 3rem; text-align: center;">
+                    <h3 style="color: #ffffff; margin-bottom: 1rem;">All Packages Start at $7.99/month</h3>
+                    <p style="margin-bottom: 1.5rem;">Custom packages available. Contact us for personalized pricing based on your exact needs.</p>
+                    <a href="contact.html" class="cta-btn">Request Custom Quote</a>
+                </div>
+            </div>
+        </section>
 
-    <div class="device-grid">
-      <div class="device-badge reveal">
-        <div class="device-emoji">📺</div>
-        <div class="device-name">Smart TV</div>
-      </div>
-      <div class="device-badge reveal">
-        <div class="device-emoji">📱</div>
-        <div class="device-name">iPhone/iPad</div>
-      </div>
-      <div class="device-badge reveal">
-        <div class="device-emoji">🤖</div>
-        <div class="device-name">Android Phone</div>
-      </div>
-      <div class="device-badge reveal">
-        <div class="device-emoji">💻</div>
-        <div class="device-name">Mac/Windows</div>
-      </div>
-      <div class="device-badge reveal">
-        <div class="device-emoji">🎮</div>
-        <div class="device-name">Firestick/Roku</div>
-      </div>
-      <div class="device-badge reveal">
-        <div class="device-emoji">⌚</div>
-        <div class="device-name">Apple TV</div>
-      </div>
-    </div>
-  </div>
-</section>
+        <!-- IPTV Boxes -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">4K Equipment</span>
+                <h2>Latest IPTV Boxes In Stock</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 3rem; max-width: 700px;">
+                    We resell the latest and most reliable 4K IPTV boxes from premium manufacturers. All in stock and ready for immediate delivery.
+                </p>
 
-<section id="support">
-  <div class="section-header reveal">
-    <div class="section-tag">We're Here For You</div>
-    <h2>Local <em>Support You Can Count On</em></h2>
-    <p class="section-sub" style="margin-top: 1rem;">Unlike big-box providers, we're your Milton neighbours. We answer our phones, solve problems fast, and treat you like family.</p>
-  </div>
+                <div class="box-grid">
+                    <div class="box-card">
+                        <div class="box-icon">📦</div>
+                        <div class="box-model">Infomir IPTV Boxes</div>
+                        <div class="box-specs">
+                            <strong>Latest 4K Models</strong><br/>
+                            Professional-grade reliability<br/>
+                            Full HD & 4K Support<br/>
+                            Advanced features
+                        </div>
+                    </div>
 
-  <div class="support-grid">
-    <div class="support-item reveal">
-      <div class="support-icon">📞</div>
-      <div class="support-content">
-        <div class="support-title">24/7 Phone Support</div>
-        <div class="support-desc">Call +1 (416) 988-4163 anytime—no hold times, no overseas call centers. Talk to a real person in Milton.</div>
-      </div>
-    </div>
-    <div class="support-item reveal">
-      <div class="support-icon">🚀</div>
-      <div class="support-content">
-        <div class="support-title">Quick Troubleshooting</div>
-        <div class="support-desc">Most issues resolved in minutes over the phone. If we need to visit, we schedule at your convenience.</div>
-      </div>
-    </div>
-    <div class="support-item reveal">
-      <div class="support-icon">🔧</div>
-      <div class="support-content">
-        <div class="support-title">Professional Installation</div>
-        <div class="support-desc">Our technicians set up everything—device, router optimization, channel testing. You're ready to watch in under 1 hour.</div>
-      </div>
-    </div>
-    <div class="support-item reveal">
-      <div class="support-icon">💬</div>
-      <div class="support-content">
-        <div class="support-title">WhatsApp Support</div>
-        <div class="support-desc">Message us on WhatsApp for quick questions. Fastest way to reach us: https://wa.me/14169884163</div>
-      </div>
-    </div>
-  </div>
-</section>
+                    <div class="box-card">
+                        <div class="box-icon">📦</div>
+                        <div class="box-model">TVIP IPTV Boxes</div>
+                        <div class="box-specs">
+                            <strong>Premium Performance</strong><br/>
+                            4K Ultra HD Ready<br/>
+                            User-friendly interface<br/>
+                            Wide compatibility
+                        </div>
+                    </div>
 
-<section id="faq">
-  <div class="section-header reveal">
-    <div class="section-tag">Questions?</div>
-    <h2>Frequently <em>Asked Questions</em></h2>
-  </div>
+                    <div class="box-card">
+                        <div class="box-icon">📦</div>
+                        <div class="box-model">Formula IPTV Boxes</div>
+                        <div class="box-specs">
+                            <strong>Top Choice</strong><br/>
+                            4K + HDR Support<br/>
+                            Excellent performance<br/>
+                            Latest technology
+                        </div>
+                    </div>
+                </div>
 
-  <div class="faq-items">
-    <div class="faq-item active reveal">
-      <div class="faq-question">
-        What internet speed do I need?
-        <span class="faq-icon">▼</span>
-      </div>
-      <div class="faq-answer">We recommend a minimum of 25 Mbps for HD streaming and 50+ Mbps for 4K. Most Milton-based internet providers easily support this. We'll check your connection before setup to ensure smooth streaming.</div>
-    </div>
+                <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, transparent 100%); border: 1px solid rgba(0, 217, 255, 0.2); border-radius: 12px; padding: 2rem; margin-top: 3rem; text-align: center;">
+                    <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                        <strong>All boxes include:</strong> Setup assistance, installation support, and lifetime technical help
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <div class="faq-item reveal">
-      <div class="faq-question">
-        Can I watch on multiple devices at once?
-        <span class="faq-icon">▼</span>
-      </div>
-      <div class="faq-answer">Yes! Your account supports up to 5 simultaneous streams. Watch the game on the living room TV while someone else watches a movie on their iPad—no problem.</div>
-    </div>
+        <!-- Setup Process -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <span class="section-label">Getting Started</span>
+                <h2>Simple Setup Process</h2>
 
-    <div class="faq-item reveal">
-      <div class="faq-question">
-        Is there a contract or hidden fees?
-        <span class="faq-icon">▼</span>
-      </div>
-      <div class="faq-answer">Absolutely no contracts. No hidden fees. Transparent pricing. You pay exactly what we quote—nothing more. Cancel anytime with no penalties. That's the Halton Digital difference.</div>
-    </div>
+                <div class="setup-steps">
+                    <div class="setup-step">
+                        <div class="step-number">1</div>
+                        <h3 style="color: #ffffff; margin-bottom: 1rem;">Choose Your Package</h3>
+                        <p>Tell us what content you want. We'll design your perfect custom package.</p>
+                    </div>
 
-    <div class="faq-item reveal">
-      <div class="faq-question">
-        What if I need to cancel?
-        <span class="faq-icon">▼</span>
-      </div>
-      <div class="faq-answer">Simple. No cancellation fees, no questions asked. Just call us or send a message, and we'll process it immediately. Your service ends on your preferred date.</div>
-    </div>
+                    <div class="setup-step">
+                        <div class="step-number">2</div>
+                        <h3 style="color: #ffffff; margin-bottom: 1rem;">Select Your Box</h3>
+                        <p>Pick from our 4K IPTV boxes or use your existing device.</p>
+                    </div>
 
-    <div class="faq-item reveal">
-      <div class="faq-question">
-        Do you offer a free trial?
-        <span class="faq-icon">▼</span>
-      </div>
-      <div class="faq-answer">Yes! We offer a 7-day free trial so you can test everything. No credit card required. If you love it, keep it going. If not, no charge, no hassle.</div>
-    </div>
+                    <div class="setup-step">
+                        <div class="step-number">3</div>
+                        <h3 style="color: #ffffff; margin-bottom: 1rem;">We Set It Up</h3>
+                        <p>We handle installation, configuration, and testing for you.</p>
+                    </div>
 
-    <div class="faq-item reveal">
-      <div class="faq-question">
-        What about customer service outside business hours?
-        <span class="faq-icon">▼</span>
-      </div>
-      <div class="faq-answer">We're available 24/7. Call anytime, even at 2 AM on a Sunday. We're Milton-based and proud to serve our community with responsive, human support whenever you need it.</div>
-    </div>
-  </div>
-</section>
+                    <div class="setup-step">
+                        <div class="step-number">4</div>
+                        <h3 style="color: #ffffff; margin-bottom: 1rem;">Start Streaming</h3>
+                        <p>Sit back and enjoy! Full support available whenever you need it.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<section id="cta">
-  <div class="cta-container">
-    <h2 class="cta-title">Ready for Premium Streaming?</h2>
-    <p class="cta-sub">Start your 7-day free trial today. No credit card. No commitment. Local support you can trust.</p>
-    <div class="cta-buttons">
-      <a href="tel:+14169884163" class="btn-primary">Call Now: (416) 988-4163</a>
-      <a href="https://wa.me/14169884163" class="btn-secondary">Message on WhatsApp</a>
-    </div>
-  </div>
-</section>
+        <!-- Why Choose Us -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">Why HDTV From Us</span>
+                <h2>Local Support For Premium IPTV</h2>
 
-<footer>
-  <div class="footer-logo">Halton <span>Digital</span> & AI</div>
-  <div class="footer-copy">© 2026 Halton Digital & AI · Milton, Ontario · Premium IPTV & Tech Services</div>
-</footer>
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                    <div class="card">
+                        <h3 style="color: var(--cyan);">✓ Customized Packages</h3>
+                        <p>No rigid bundles. We create the exact content mix you want.</p>
+                    </div>
 
-<script>
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.12 });
-  revealEls.forEach(el => observer.observe(el));
+                    <div class="card">
+                        <h3 style="color: var(--cyan);">✓ Reliable Service</h3>
+                        <p>Backed by proven providers with excellent uptime records.</p>
+                    </div>
 
-  // Nav scroll style
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', () => {
-    nav.style.background = window.scrollY > 40 ? 'rgba(5,9,26,0.92)' : 'rgba(5,9,26,0.72)';
-  });
+                    <div class="card">
+                        <h3 style="color: var(--cyan);">✓ Local Support</h3>
+                        <p>Issues? Call us directly. No waiting, no call centers.</p>
+                    </div>
 
-  // FAQ toggle
-  document.querySelectorAll('.faq-item').forEach(item => {
-    item.addEventListener('click', () => {
-      item.classList.toggle('active');
-    });
-  });
-</script>
+                    <div class="card">
+                        <h3 style="color: var(--cyan);">✓ Setup Included</h3>
+                        <p>We handle installation, configuration, and optimization.</p>
+                    </div>
 
+                    <div class="card">
+                        <h3 style="color: var(--cyan);">✓ 4K Ready</h3>
+                        <p>Latest boxes support 4K Ultra HD and advanced features.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3 style="color: var(--cyan);">✓ Affordable</h3>
+                        <p>Premium service starting at just $7.99/month.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <div class="container">
+                <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(0, 168, 204, 0.08) 100%); border: 1px solid rgba(0, 217, 255, 0.3); border-radius: 12px; padding: 4rem 2rem; text-align: center;">
+                    <h2 style="margin-bottom: 1rem;">Ready To Cut The Cable?</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Get premium IPTV service at a fraction of what you're paying now. Customized content, reliable service, local support.
+                    </p>
+                    <a href="contact.html" class="cta-btn">Start Your IPTV Service Today</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="web-design.html">Web Design & Development</a></li>
+                        <li><a href="pc-building.html">Custom PC Building</a></li>
+                        <li><a href="iptv.html">Premium IPTV Services</a></li>
+                        <li><a href="faq.html">FAQ & Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Our Work</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Get In Touch</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Phone:</strong>
+                            <a href="tel:+14169884163">+1 (416) 988-4163</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <a href="mailto:HaltonIPTV@gmail.com">HaltonIPTV@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Location:</strong>
+                            <span>Milton, Ontario</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <p>Serving Milton, Burlington, Oakville, and surrounding communities throughout the Halton Region.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Halton Digital & AI. All rights reserved. | Milton, Ontario</p>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

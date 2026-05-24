@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design & Development - Halton Digital & AI</title>
+    <meta name="description" content="Professional web design and development for e-commerce, corporate, and custom websites. AI-enhanced, Canadian hosting, 2-4 week turnaround.">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, var(--ink2) 0%, rgba(26, 31, 58, 0.5) 100%);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--cyan);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            border-color: var(--cyan);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.15);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .price-period {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            color: var(--cyan);
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 1.1rem;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--cyan);
+            color: var(--ink);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tech-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            border-color: var(--cyan);
+            transform: translateY(-4px);
+        }
+
+        .tech-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tech-name {
+            font-weight: 600;
+            color: #ffffff;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-8px);
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Halton <span>Digital & AI</span></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="web-design.html" class="active">Web Design</a>
+                <a href="pc-building.html">PC Building</a>
+                <a href="iptv.html">IPTV</a>
+                <a href="contact.html" class="cta-btn">Get In Touch</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero" style="min-height: 60vh;">
+            <div class="hero-content">
+                <h1>Professional Web Design & Development</h1>
+                <p style="font-size: 1.2rem;">E-commerce, corporate, and custom websites built on Canadian infrastructure with competitive pricing and 2-4 week turnaround.</p>
+                <div class="hero-ctas">
+                    <button class="cta-btn" onclick="document.querySelector('.pricing-grid').scrollIntoView()">View Pricing</button>
+                    <a href="contact.html" class="cta-btn cta-btn-outline">Request Quote</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Overview -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">What We Build</span>
+                <h2>Websites That Work</h2>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem;">
+                    <div>
+                        <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                            Your website is often the first impression potential customers have of your business. We build fast, beautiful, conversion-focused websites that represent your brand and drive real results.
+                        </p>
+
+                        <h3 style="color: var(--cyan); margin-bottom: 1.5rem;">We Specialize In:</h3>
+                        <ul class="feature-list">
+                            <li><strong>E-Commerce Sites</strong> — Online stores built to sell</li>
+                            <li><strong>Corporate Websites</strong> — Professional brand presence</li>
+                            <li><strong>Custom Solutions</strong> — Whatever your business needs</li>
+                            <li><strong>Responsive Design</strong> — Perfect on all devices</li>
+                            <li><strong>SEO Optimized</strong> — Built to rank and convert</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, transparent 100%); border-radius: 12px; padding: 3rem; border: 1px solid var(--border); min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🌐</div>
+                            <p style="font-size: 1.1rem;">Beautiful websites that convert visitors into customers</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Canadian -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <span class="section-label">Infrastructure</span>
+                <h2>Canadian Hosting. Always.</h2>
+
+                <div style="max-width: 800px;">
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                        Your data is your business. That's why all Halton Digital & AI websites run on Canadian servers and use Canadian service providers exclusively.
+                    </p>
+
+                    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                        <div class="card">
+                            <h3 style="color: var(--cyan);">🔒 Your Data Protected</h3>
+                            <p>Hosted entirely within Canadian borders with Canadian compliance standards.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="color: var(--cyan);">⚡ Lightning Fast</h3>
+                            <p>Local servers mean faster load times for your customers across Canada.</p>
+                        </div>
+
+                        <div class="card">
+                            <h3 style="color: var(--cyan);">📋 Peace of Mind</h3>
+                            <p>PIPEDA compliant. Your business data stays where it should — in Canada.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">Our Process</span>
+                <h2>From Concept To Launch in 2-4 Weeks</h2>
+
+                <div class="process-grid">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3>Discovery</h3>
+                        <p>We learn about your business, goals, and target audience. Understanding your vision comes first.</p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3>Design</h3>
+                        <p>Beautiful, strategic designs that align with your brand and drive conversions.</p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3>Development</h3>
+                        <p>Clean, fast code built with the latest technologies and best practices.</p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3>Launch</h3>
+                        <p>Thorough testing, optimization, and deployment to your Canadian servers.</p>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <h3>Support</h3>
+                        <p>Ongoing maintenance and support to keep your site running smoothly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <span class="section-label">Modern Stack</span>
+                <h2>Built With Modern Technology</h2>
+
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <div class="tech-icon">⚛️</div>
+                        <div class="tech-name">React</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🔵</div>
+                        <div class="tech-name">Next.js</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🎨</div>
+                        <div class="tech-name">Tailwind CSS</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🚀</div>
+                        <div class="tech-name">Vercel</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">💾</div>
+                        <div class="tech-name">PostgreSQL</div>
+                    </div>
+                    <div class="tech-item">
+                        <div class="tech-icon">🔐</div>
+                        <div class="tech-name">SSL Security</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">Pricing</span>
+                <h2>Flexible Packages For Every Business</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 1rem; max-width: 700px;">
+                    We work with your budget and timeline. All packages include responsive design, SEO optimization, and Canadian hosting on secure servers.
+                </p>
+
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3 style="color: #ffffff;">Starter Site</h3>
+                        <div class="price">$2,999</div>
+                        <div class="price-period">One-time cost</div>
+                        <ul class="features-list">
+                            <li>Up to 5 pages</li>
+                            <li>Mobile responsive</li>
+                            <li>Contact form</li>
+                            <li>SEO basics</li>
+                            <li>1 month free support</li>
+                            <li>Canadian hosting</li>
+                        </ul>
+                        <a href="contact.html" class="cta-btn" style="width: 100%; text-align: center;">Get Started</a>
+                    </div>
+
+                    <div class="pricing-card featured">
+                        <div style="position: absolute; top: -15px; right: 20px; background: var(--cyan); color: var(--ink); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 700;">POPULAR</div>
+                        <h3 style="color: #ffffff;">Professional Site</h3>
+                        <div class="price">$5,999</div>
+                        <div class="price-period">One-time cost</div>
+                        <ul class="features-list">
+                            <li>Up to 15 pages</li>
+                            <li>Advanced design</li>
+                            <li>Blog/news section</li>
+                            <li>Full SEO optimization</li>
+                            <li>3 months free support</li>
+                            <li>Analytics setup</li>
+                            <li>Canadian hosting</li>
+                        </ul>
+                        <a href="contact.html" class="cta-btn" style="width: 100%; text-align: center;">Get Started</a>
+                    </div>
+
+                    <div class="pricing-card">
+                        <h3 style="color: #ffffff;">E-Commerce Store</h3>
+                        <div class="price">$8,999</div>
+                        <div class="price-period">One-time cost</div>
+                        <ul class="features-list">
+                            <li>Full e-commerce setup</li>
+                            <li>Payment processing</li>
+                            <li>Inventory management</li>
+                            <li>Advanced SEO</li>
+                            <li>6 months free support</li>
+                            <li>Email marketing integration</li>
+                            <li>Canadian hosting</li>
+                        </ul>
+                        <a href="contact.html" class="cta-btn" style="width: 100%; text-align: center;">Get Started</a>
+                    </div>
+                </div>
+
+                <div style="background: rgba(0, 217, 255, 0.1); border: 1px solid rgba(0, 217, 255, 0.3); border-radius: 12px; padding: 2rem; margin-top: 3rem; text-align: center;">
+                    <h3 style="color: #ffffff; margin-bottom: 1rem;">Need Something Custom?</h3>
+                    <p style="margin-bottom: 1.5rem;">Not seeing exactly what you need? Let's build a custom package that fits your business perfectly.</p>
+                    <a href="contact.html" class="cta-btn cta-btn-outline">Request Custom Quote</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <div class="container">
+                <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(0, 168, 204, 0.08) 100%); border: 1px solid rgba(0, 217, 255, 0.3); border-radius: 12px; padding: 4rem 2rem; text-align: center;">
+                    <h2 style="margin-bottom: 1rem;">Ready For Your New Website?</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Let's discuss your project and get you a website that works as hard as you do.
+                    </p>
+                    <a href="contact.html" class="cta-btn">Start Your Project Today</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="web-design.html">Web Design & Development</a></li>
+                        <li><a href="pc-building.html">Custom PC Building</a></li>
+                        <li><a href="iptv.html">Premium IPTV Services</a></li>
+                        <li><a href="faq.html">FAQ & Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Our Work</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Get In Touch</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Phone:</strong>
+                            <a href="tel:+14169884163">+1 (416) 988-4163</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <a href="mailto:HaltonIPTV@gmail.com">HaltonIPTV@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Location:</strong>
+                            <span>Milton, Ontario</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <p>Serving Milton, Burlington, Oakville, and surrounding communities throughout the Halton Region.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Halton Digital & AI. All rights reserved. | Milton, Ontario</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

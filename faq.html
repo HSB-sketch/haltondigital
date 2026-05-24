@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Halton Digital & AI</title>
+    <meta name="description" content="Frequently asked questions about Halton Digital & AI services, pricing, support, and delivery.">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-category {
+            margin-bottom: 4rem;
+        }
+
+        .faq-category-title {
+            color: var(--cyan);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .faq-category-title::before {
+            content: '';
+            width: 30px;
+            height: 2px;
+            background: var(--cyan);
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--ink2) 0%, rgba(26, 31, 58, 0.5) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--cyan);
+        }
+
+        .faq-question {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0;
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--cyan);
+        }
+
+        .faq-toggle {
+            color: var(--cyan);
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-toggle.open {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            display: none;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        .faq-answer.open {
+            display: block;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .faq-answer strong {
+            color: var(--text);
+        }
+
+        .faq-answer a {
+            color: var(--cyan);
+            text-decoration: underline;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-box {
+            max-width: 500px;
+            margin: 0 auto 3rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem;
+            background: var(--ink2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text);
+            font-size: 1rem;
+        }
+
+        .search-box input::placeholder {
+            color: var(--muted);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 3px rgba(0, 217, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .faq-item {
+                padding: 1.5rem;
+            }
+
+            .faq-question {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Halton <span>Digital & AI</span></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="web-design.html">Web Design</a>
+                <a href="pc-building.html">PC Building</a>
+                <a href="iptv.html">IPTV</a>
+                <a href="contact.html" class="cta-btn">Get In Touch</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero" style="min-height: 50vh;">
+            <div class="hero-content">
+                <h1>Frequently Asked Questions</h1>
+                <p style="font-size: 1.2rem;">Find answers to common questions about our services, pricing, and support.</p>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section">
+            <div class="container faq-container">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search FAQ...">
+                </div>
+
+                <!-- General Questions -->
+                <div class="faq-category">
+                    <h2 class="faq-category-title">General</h2>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What areas do you serve?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            We proudly serve Milton, Burlington, Oakville, and surrounding communities throughout the Halton Region in Ontario. If you're unsure whether your area is covered, feel free to contact us directly.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How long have you been in business?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Harry has over 20 years of experience in technology services, starting as a freelancer in 2004. Halton Digital & AI was formally founded to better serve the small businesses in the Halton region. With 500+ completed projects and 200+ happy clients, we have the experience and proven track record you can trust.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do you offer free consultations?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes! We offer free initial consultations for all services. This is a no-obligation opportunity to discuss your project, ask questions, and get a sense of how we work. <a href="contact.html">Contact us to schedule yours</a>.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What makes you different from other tech companies?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <strong>Local expertise + personal attention.</strong> We're not a call center or faceless corporation. We know the Halton region, understand small business challenges, and are genuinely invested in your success. Plus, we specialize in <strong>Canadian data and hosting</strong> — your data stays protected within Canadian borders — and we offer <strong>all-in-one services</strong> so you have one trusted partner for web design, PC building, and IPTV solutions.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Web Design FAQ -->
+                <div class="faq-category">
+                    <h2 class="faq-category-title">Web Design & Development</h2>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How long does it take to build a website?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Typical timelines are <strong>2-4 weeks for standard websites</strong>. This depends on the scope and complexity of your project. Simple brochure sites are on the faster end; large e-commerce builds or sites with custom features may take longer. We discuss your timeline during the initial consultation and work to meet your needs.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Where will my website be hosted?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <strong>Canadian servers only.</strong> All Halton Digital & AI websites are hosted on Canadian infrastructure using Canadian service providers. Your data stays protected within Canadian borders, complying with PIPEDA and Canadian data protection regulations. No compromises on data sovereignty.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What are your website pricing packages?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            We offer three core packages: <strong>Starter Site ($2,999)</strong> for small brochure sites, <strong>Professional Site ($5,999)</strong> for businesses needing advanced features, and <strong>E-Commerce Store ($8,999)</strong> for online retailers. All include responsive design, SEO optimization, and Canadian hosting. Custom quotes available for specialized projects. <a href="web-design.html">View full pricing details</a>.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do you offer ongoing support and maintenance?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Absolutely. All our websites include free support in the first 1-3 months depending on your package. After that, we offer affordable ongoing support plans for updates, security patches, backups, and any modifications you need. We're here to keep your site running smoothly long-term.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Will my website be mobile-friendly?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes, every website we build is fully responsive and optimized for mobile devices. With most web traffic now coming from phones and tablets, this is non-negotiable. Your site will look and function perfectly on all screen sizes.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PC Building FAQ -->
+                <div class="faq-category">
+                    <h2 class="faq-category-title">Custom PC Building</h2>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Why build a custom PC instead of buying pre-built?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Custom builds give you exactly what you need — no unnecessary components driving up the price, no missing features. You get better performance per dollar, hand-picked quality components, and a machine designed specifically for your work. Plus, you can upgrade individual parts later without replacing the whole system.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How much does a custom PC cost?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Pricing depends entirely on your needs. <strong>Gaming PCs start at $1,200</strong>, <strong>Workstations at $1,500</strong>, and <strong>Servers are custom priced</strong> based on specifications. We recommend getting a free consultation to discuss your budget and requirements, then we'll design the perfect machine for your needs.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do you provide warranty and support?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes! All components carry full manufacturer warranty, and we back our assembly work with our quality guarantee. We also offer <strong>lifetime support</strong> — upgrades, maintenance, troubleshooting, and optimizations whenever you need them. You have direct access to real people, not call centers.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Can you help me choose components for my build?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            That's what we do! Tell us your budget, what you'll use the PC for (gaming, video editing, 3D rendering, etc.), and we'll recommend the perfect component combination. We use our expertise to give you the best performance per dollar for your specific needs.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How long does assembly take?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Assembly typically takes 1-2 weeks from order to delivery. This includes expert building, testing, optimization, OS installation, driver setup, and quality assurance. Your machine arrives fully tested and ready to go.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IPTV FAQ -->
+                <div class="faq-category">
+                    <h2 class="faq-category-title">Premium IPTV Services</h2>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What content packages do you offer?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            We're a reseller of multiple IPTV providers with customized packages. We offer <strong>North American content, European content, South Asian content, East Asian content</strong>, and more. Every package can be customized to match your specific needs and preferences.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How much does IPTV service cost?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <strong>Premium IPTV service starts at just $7.99/month</strong>. Pricing varies based on which content packages you choose. Custom packages and bulk pricing for businesses are available. Contact us for a quote tailored to your specific needs.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What IPTV boxes do you offer?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            We resell the latest 4K IPTV boxes from top manufacturers including <strong>Infomir, TVIP, and Formula</strong>. All are in stock and ready for immediate delivery. We can also help you set up IPTV on existing devices if you prefer.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Is IPTV service reliable?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes. Our IPTV service is backed by reliable providers with strong uptime records. We handle technical support directly, so if you ever have issues, you get immediate assistance from someone local who knows your system.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Can I customize my content packages?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes! That's what makes our service special. Unlike rigid packages, we work with you to create customized content specific to your interests. Want sports, entertainment, and news in multiple languages? We can do that.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support & General -->
+                <div class="faq-category">
+                    <h2 class="faq-category-title">Support & General Questions</h2>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>How do I contact you?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Multiple ways: <strong>Call +1 (416) 988-4163</strong>, <strong>email HaltonIPTV@gmail.com</strong>, <strong>message on WhatsApp</strong>, or <strong><a href="contact.html">fill out our contact form</a></strong>. We typically respond within 24 hours.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>What's your response time for support requests?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            <strong>Usually within 24 hours for email</strong>, often much faster for phone and WhatsApp. For urgent issues, call directly. No waiting on hold — you reach a real person who can help immediately.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do you have references from other clients?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Absolutely! We have 500+ completed projects and 200+ happy clients. We're happy to provide references and case studies. <a href="portfolio.html">Check out our portfolio</a> for examples of our work.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Do you offer payment plans?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            Let's discuss it! We work with businesses of all sizes and are flexible about payment arrangements. Contact us to discuss options that work for your situation.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Didn't find your answer?</span>
+                            <span class="faq-toggle">▼</span>
+                        </button>
+                        <div class="faq-answer">
+                            No problem! <a href="contact.html">Get in touch with us directly</a>. We're here to answer any questions about our services. You can call us at <strong>+1 (416) 988-4163</strong> or send an email to <strong>HaltonIPTV@gmail.com</strong>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <div style="text-align: center; max-width: 700px; margin: 0 auto;">
+                    <h2 style="margin-bottom: 1.5rem;">Ready To Get Started?</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                        Have more questions or ready to start your project? Let's talk!
+                    </p>
+                    <a href="contact.html" class="cta-btn">Contact Us Today</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="web-design.html">Web Design & Development</a></li>
+                        <li><a href="pc-building.html">Custom PC Building</a></li>
+                        <li><a href="iptv.html">Premium IPTV Services</a></li>
+                        <li><a href="faq.html">FAQ & Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Our Work</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Get In Touch</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Phone:</strong>
+                            <a href="tel:+14169884163">+1 (416) 988-4163</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <a href="mailto:HaltonIPTV@gmail.com">HaltonIPTV@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Location:</strong>
+                            <span>Milton, Ontario</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <p>Serving Milton, Burlington, Oakville, and surrounding communities throughout the Halton Region.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Halton Digital & AI. All rights reserved. | Milton, Ontario</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const toggle = this.querySelector('.faq-toggle');
+                
+                answer.classList.toggle('open');
+                toggle.classList.toggle('open');
+            });
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('keyup', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const question = item.querySelector('.faq-question span:first-child').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

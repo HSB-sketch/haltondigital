@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Cloud Solutions & Hosting - Halton Digital & AI</title>
+    <meta name="description" content="Enterprise-grade cloud solutions, hosting, security, and managed services powered by SunnyOasis. Canadian infrastructure, PIPEDA compliant.">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+        }
+
+        .service-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .solution-card {
+            background: linear-gradient(135deg, var(--ink2) 0%, rgba(26, 31, 58, 0.5) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .solution-card:hover {
+            border-color: var(--cyan);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.1);
+        }
+
+        .solution-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .partner-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff9800 0%, #ff6f00 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .partner-logo {
+            width: 100%;
+            max-width: 300px;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, transparent 100%);
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-comparison {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-item {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+        }
+
+        .comparison-label {
+            color: var(--cyan);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .comparison-value {
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .service-hero {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Halton <span>Digital & AI</span></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="web-design.html">Web Design</a>
+                <a href="pc-building.html">PC Building</a>
+                <a href="iptv.html">IPTV</a>
+                <a href="contact.html" class="cta-btn">Get In Touch</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero" style="min-height: 60vh;">
+            <div class="hero-content">
+                <h1>Enterprise Cloud Solutions</h1>
+                <p style="font-size: 1.2rem;">Beyond websites. Complete infrastructure, security, hosting, and managed services powered by SunnyOasis.</p>
+                <div class="hero-ctas">
+                    <button class="cta-btn" onclick="document.getElementById('solutions').scrollIntoView()">Explore Solutions</button>
+                    <a href="contact.html" class="cta-btn cta-btn-outline">Get Consultation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partnership -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    <span class="section-label">Powered By</span>
+                    <h2>SunnyOasis Internet Corp Partnership</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--muted);">
+                        Chris leads our cloud solutions, bringing enterprise-grade infrastructure, security, and managed services to every project through our partnership with SunnyOasis.
+                    </p>
+
+                    <div class="partner-logo">☁️</div>
+
+                    <div style="background: linear-gradient(135deg, rgba(255, 152, 0, 0.1) 0%, transparent 100%); border: 1px solid rgba(255, 152, 0, 0.2); border-radius: 12px; padding: 2rem;">
+                        <p style="font-size: 1rem; margin-bottom: 1rem;">
+                            <strong>SunnyOasis Internet Corp</strong> is your partner for cloud solutions, hosting, and security. Tailored for managed service providers, small-to-medium businesses, and enterprises in need of resilient network operations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions Overview -->
+        <section class="section" id="solutions">
+            <div class="container">
+                <span class="section-label">Our Offerings</span>
+                <h2>Complete Enterprise Solutions</h2>
+
+                <div class="solution-grid">
+                    <div class="solution-card">
+                        <div class="solution-icon">☁️</div>
+                        <h3>Cloud Hosting Solutions</h3>
+                        <p>High-performance website hosting and scalable cloud infrastructure. Built for growth, optimized for performance. All Canadian-hosted.</p>
+                        <ul class="feature-list" style="margin-top: 1.5rem;">
+                            <li>Scalable cloud infrastructure</li>
+                            <li>High-availability hosting</li>
+                            <li>Automatic backups & recovery</li>
+                            <li>PIPEDA compliant</li>
+                        </ul>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-icon">🔒</div>
+                        <h3>Security & Protection</h3>
+                        <p>Comprehensive security solutions protecting your business from threats. Backup platforms, vulnerability assessment, and advanced email security.</p>
+                        <ul class="feature-list" style="margin-top: 1.5rem;">
+                            <li>Advanced email security</li>
+                            <li>Backup platforms</li>
+                            <li>Vulnerability assessment</li>
+                            <li>Disaster recovery plans</li>
+                        </ul>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-icon">📊</div>
+                        <h3>Management Tools & Monitoring</h3>
+                        <p>Remote monitoring (RMM) and remote-access support systems. Proactive system management keeping your infrastructure running smoothly.</p>
+                        <ul class="feature-list" style="margin-top: 1.5rem;">
+                            <li>24/7 remote monitoring</li>
+                            <li>Remote access support</li>
+                            <li>Proactive maintenance</li>
+                            <li>Performance optimization</li>
+                        </ul>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-icon">💼</div>
+                        <h3>Software Licensing & Productivity</h3>
+                        <p>Microsoft 365 email services and cloud productivity applications. Everything your team needs to work efficiently and securely.</p>
+                        <ul class="feature-list" style="margin-top: 1.5rem;">
+                            <li>Microsoft 365 licensing</li>
+                            <li>Email services</li>
+                            <li>Cloud productivity apps</li>
+                            <li>Team collaboration tools</li>
+                        </ul>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-icon">🌐</div>
+                        <h3>Enterprise Custom Deployments</h3>
+                        <p>Multi-location hosting, complex cloud architectures, and enterprise-scale solutions. Custom-built for your specific needs.</p>
+                        <ul class="feature-list" style="margin-top: 1.5rem;">
+                            <li>Multi-site deployment</li>
+                            <li>Custom architecture</li>
+                            <li>Enterprise scalability</li>
+                            <li>SLA guarantees</li>
+                        </ul>
+                    </div>
+
+                    <div class="solution-card">
+                        <div class="solution-icon">🤝</div>
+                        <h3>Managed Services & Support</h3>
+                        <p>Full managed services with 24/7 support options. We handle the infrastructure so you focus on your business.</p>
+                        <ul class="feature-list" style="margin-top: 1.5rem;">
+                            <li>24/7 helpdesk support</li>
+                            <li>Managed infrastructure</li>
+                            <li>Proactive issue resolution</li>
+                            <li>Regular health checks</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <span class="section-label">Key Advantages</span>
+                <h2>Why Enterprise Clients Choose Us</h2>
+
+                <div class="feature-comparison">
+                    <div class="comparison-item">
+                        <div class="comparison-label">🇨🇦 Canadian Infrastructure</div>
+                        <div class="comparison-value">Data stays home</div>
+                        <p>All servers, backups, and operations on Canadian infrastructure. PIPEDA compliant.</p>
+                    </div>
+
+                    <div class="comparison-item">
+                        <div class="comparison-label">🔐 Enterprise Security</div>
+                        <div class="comparison-value">Advanced protection</div>
+                        <p>Backup platforms, vulnerability assessment, advanced email security, and more.</p>
+                    </div>
+
+                    <div class="comparison-item">
+                        <div class="comparison-label">📞 Local Support</div>
+                        <div class="comparison-value">Real people. Real help.</div>
+                        <p>Direct contact with Chris and the team. No call centers. No waiting.</p>
+                    </div>
+
+                    <div class="comparison-item">
+                        <div class="comparison-label">📈 Scalable</div>
+                        <div class="comparison-value">Grows with you</div>
+                        <p>Start small, scale up. Cloud infrastructure grows as your business grows.</p>
+                    </div>
+
+                    <div class="comparison-item">
+                        <div class="comparison-label">🎯 Integrated Solutions</div>
+                        <div class="comparison-value">One trusted partner</div>
+                        <p>Web design, hosting, security, PC building — everything from one source.</p>
+                    </div>
+
+                    <div class="comparison-item">
+                        <div class="comparison-label">⚡ Performance</div>
+                        <div class="comparison-value">Lightning fast</div>
+                        <p>Optimized infrastructure, automatic scaling, and performance monitoring.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Use Cases -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">Ideal For</span>
+                <h2>Who Benefits From Enterprise Cloud Solutions?</h2>
+
+                <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+                    <div class="card">
+                        <h3>Growing Businesses</h3>
+                        <p>Companies needing to scale infrastructure without large capital investments. Pay-as-you-grow pricing.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Multi-Location Operations</h3>
+                        <p>Businesses with multiple offices needing unified, secure infrastructure across locations.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Security-Focused Enterprises</h3>
+                        <p>Organizations with strict data protection, compliance, and security requirements.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>E-Commerce & SaaS</h3>
+                        <p>High-traffic applications needing reliable, fast, scalable hosting and infrastructure.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Healthcare & Finance</h3>
+                        <p>Regulated industries needing PIPEDA compliance, security, and audit trails.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Organizations Needing Control</h3>
+                        <p>Businesses wanting Canadian data, local support, and full infrastructure visibility.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chris's Expertise -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <span class="section-label">Meet Your Cloud Solutions Expert</span>
+                <h2>Chris - Cloud Solutions Architect</h2>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; margin-top: 3rem;">
+                    <div>
+                        <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                            Chris brings enterprise-grade cloud architecture expertise to every project. As a lead developer and cloud solutions architect, he specializes in designing and implementing complex infrastructure solutions through our partnership with SunnyOasis Internet Corp.
+                        </p>
+
+                        <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                            Whether you need high-performance hosting for a web application, comprehensive security solutions, or a complete cloud infrastructure redesign, Chris has the expertise to make it happen.
+                        </p>
+
+                        <h3 style="color: var(--cyan); margin-bottom: 1.5rem;">Specialties:</h3>
+                        <ul class="feature-list">
+                            <li>Cloud architecture design</li>
+                            <li>Enterprise hosting solutions</li>
+                            <li>Security & compliance</li>
+                            <li>Infrastructure optimization</li>
+                            <li>Disaster recovery planning</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, transparent 100%); border-radius: 12px; padding: 3rem; border: 1px solid var(--border); min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">☁️</div>
+                            <p style="font-size: 1.1rem;">Enterprise-grade infrastructure built for growth</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <div class="container">
+                <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(0, 168, 204, 0.08) 100%); border: 1px solid rgba(0, 217, 255, 0.3); border-radius: 12px; padding: 4rem 2rem; text-align: center;">
+                    <h2 style="margin-bottom: 1rem;">Ready to Upgrade Your Infrastructure?</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Let's discuss how enterprise cloud solutions can improve performance, security, and scalability for your business.
+                    </p>
+                    <a href="contact.html" class="cta-btn">Schedule Your Consultation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="web-design.html">Web Design & Development</a></li>
+                        <li><a href="pc-building.html">Custom PC Building</a></li>
+                        <li><a href="iptv.html">Premium IPTV Services</a></li>
+                        <li><a href="enterprise-solutions.html">Enterprise Cloud Solutions</a></li>
+                        <li><a href="faq.html">FAQ & Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Our Work</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Get In Touch</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Phone:</strong>
+                            <a href="tel:+14169884163">+1 (416) 988-4163</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <a href="mailto:HaltonIPTV@gmail.com">HaltonIPTV@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Location:</strong>
+                            <span>Milton, Ontario</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <p>Serving Milton, Burlington, Oakville, and surrounding communities throughout the Halton Region.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Halton Digital & AI. All rights reserved. | Milton, Ontario</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

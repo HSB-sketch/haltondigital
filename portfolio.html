@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio & Case Studies - Halton Digital & AI</title>
+    <meta name="description" content="See how Halton Digital & AI helped businesses grow. Real projects, real results, real testimonials from Milton, Burlington, Oakville.">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .case-study {
+            background: linear-gradient(135deg, var(--ink2) 0%, rgba(26, 31, 58, 0.5) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .case-study:hover {
+            border-color: var(--cyan);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.1);
+        }
+
+        .case-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, transparent 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .case-content {
+            padding: 2rem;
+        }
+
+        .case-category {
+            color: var(--cyan);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .case-title {
+            color: #ffffff;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .case-challenge {
+            margin-bottom: 1.5rem;
+        }
+
+        .case-label {
+            color: var(--cyan);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .result-box {
+            background: rgba(0, 217, 255, 0.1);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .result-number {
+            color: var(--cyan);
+            font-size: 1.5rem;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .result-label {
+            color: var(--muted);
+            font-size: 0.8rem;
+            margin-top: 0.25rem;
+        }
+
+        .testimonial-section {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-quote {
+            font-size: 1.1rem;
+            color: var(--text);
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--cyan);
+        }
+
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--muted);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            background: rgba(0, 217, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-buttons {
+                flex-direction: column;
+            }
+
+            .filter-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Halton <span>Digital & AI</span></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="web-design.html">Web Design</a>
+                <a href="pc-building.html">PC Building</a>
+                <a href="iptv.html">IPTV</a>
+                <a href="contact.html" class="cta-btn">Get In Touch</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero" style="min-height: 60vh;">
+            <div class="hero-content">
+                <h1>Our Work</h1>
+                <p style="font-size: 1.2rem;">Real projects. Real results. Real businesses transformed by the right technology.</p>
+            </div>
+        </section>
+
+        <!-- Portfolio -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">Featured Work</span>
+                <h2>Case Studies & Projects</h2>
+
+                <div class="portfolio-grid">
+                    <!-- Case Study 1 -->
+                    <div class="case-study">
+                        <div class="case-image">🛍️</div>
+                        <div class="case-content">
+                            <div class="case-category">Web Design</div>
+                            <div class="case-title">Milton Boutique E-Commerce</div>
+                            <div class="case-challenge">
+                                <div class="case-label">Challenge</div>
+                                <p>Local boutique needed modern e-commerce presence to compete with online retailers.</p>
+                            </div>
+                            <div>
+                                <div class="case-label">Solution</div>
+                                <p>Custom e-commerce website with inventory management and mobile optimization.</p>
+                            </div>
+                            <div class="results-grid">
+                                <div class="result-box">
+                                    <div class="result-number">40%</div>
+                                    <div class="result-label">Sales Increase</div>
+                                </div>
+                                <div class="result-box">
+                                    <div class="result-number">3x</div>
+                                    <div class="result-label">Web Traffic</div>
+                                </div>
+                            </div>
+                            <div class="testimonial-section">
+                                <div class="testimonial-quote">"Harry completely transformed how we sell online. Our sales went up 40% in the first 3 months."</div>
+                                <div class="testimonial-author">Sarah M.</div>
+                                <div class="testimonial-role">Boutique Owner</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case Study 2 -->
+                    <div class="case-study">
+                        <div class="case-image">💼</div>
+                        <div class="case-content">
+                            <div class="case-category">Web Design</div>
+                            <div class="case-title">Burlington Tech Consulting Firm</div>
+                            <div class="case-challenge">
+                                <div class="case-label">Challenge</div>
+                                <p>Corporate consulting firm needed professional brand website to attract enterprise clients.</p>
+                            </div>
+                            <div>
+                                <div class="case-label">Solution</div>
+                                <p>Enterprise-grade website with case studies, blog, and lead generation system.</p>
+                            </div>
+                            <div class="results-grid">
+                                <div class="result-box">
+                                    <div class="result-number">8</div>
+                                    <div class="result-label">New Clients</div>
+                                </div>
+                                <div class="result-box">
+                                    <div class="result-number">60%</div>
+                                    <div class="result-label">Inquiry Growth</div>
+                                </div>
+                            </div>
+                            <div class="testimonial-section">
+                                <div class="testimonial-quote">"Professional, reliable, and they really understood our business model. Highly recommend."</div>
+                                <div class="testimonial-author">David L.</div>
+                                <div class="testimonial-role">Consulting Director</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case Study 3 -->
+                    <div class="case-study">
+                        <div class="case-image">🖥️</div>
+                        <div class="case-content">
+                            <div class="case-category">PC Building</div>
+                            <div class="case-title">Oakville Media Production Studio</div>
+                            <div class="case-challenge">
+                                <div class="case-label">Challenge</div>
+                                <p>Production team needed high-performance workstations for video editing and rendering.</p>
+                            </div>
+                            <div>
+                                <div class="case-label">Solution</div>
+                                <p>Custom-built dual-workstation setup with RTX 4090s and 64GB RAM each.</p>
+                            </div>
+                            <div class="results-grid">
+                                <div class="result-box">
+                                    <div class="result-number">50%</div>
+                                    <div class="result-label">Faster Renders</div>
+                                </div>
+                                <div class="result-box">
+                                    <div class="result-number">∞</div>
+                                    <div class="result-label">Peace of Mind</div>
+                                </div>
+                            </div>
+                            <div class="testimonial-section">
+                                <div class="testimonial-quote">"These machines handle our 4K workflow effortlessly. Harry built exactly what we needed."</div>
+                                <div class="testimonial-author">Mike T.</div>
+                                <div class="testimonial-role">Studio Director</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case Study 4 -->
+                    <div class="case-study">
+                        <div class="case-image">🏋️</div>
+                        <div class="case-content">
+                            <div class="case-category">IPTV Services</div>
+                            <div class="case-title">Oakville Fitness Center</div>
+                            <div class="case-challenge">
+                                <div class="case-label">Challenge</div>
+                                <p>Fitness facility needed premium sports channels for members across multiple TVs.</p>
+                            </div>
+                            <div>
+                                <div class="case-label">Solution</div>
+                                <p>Multi-room IPTV setup with sports-focused content packages and reliable service.</p>
+                            </div>
+                            <div class="results-grid">
+                                <div class="result-box">
+                                    <div class="result-number">12</div>
+                                    <div class="result-label">TV Setups</div>
+                                </div>
+                                <div class="result-box">
+                                    <div class="result-number">100%</div>
+                                    <div class="result-label">Uptime</div>
+                                </div>
+                            </div>
+                            <div class="testimonial-section">
+                                <div class="testimonial-quote">"Members love the variety of sports we can show. Best decision for our gym."</div>
+                                <div class="testimonial-author">James P.</div>
+                                <div class="testimonial-role">Gym Owner</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case Study 5 -->
+                    <div class="case-study">
+                        <div class="case-image">🎮</div>
+                        <div class="case-content">
+                            <div class="case-category">PC Building</div>
+                            <div class="case-title">Local Gaming Tournament Organizer</div>
+                            <div class="case-challenge">
+                                <div class="case-label">Challenge</div>
+                                <p>Tournament organizer needed 10 identical high-end gaming rigs for esports events.</p>
+                            </div>
+                            <div>
+                                <div class="case-label">Solution</div>
+                                <p>10 matching custom gaming PCs with RTX 4070s and Ryzen 9 processors.</p>
+                            </div>
+                            <div class="results-grid">
+                                <div class="result-box">
+                                    <div class="result-number">10</div>
+                                    <div class="result-label">Perfect Builds</div>
+                                </div>
+                                <div class="result-box">
+                                    <div class="result-number">5</div>
+                                    <div class="result-label">Tournaments Ran</div>
+                                </div>
+                            </div>
+                            <div class="testimonial-section">
+                                <div class="testimonial-quote">"Perfectly matched systems. Every tournament runs flawlessly. Harry's an esports hero."</div>
+                                <div class="testimonial-author">Alex R.</div>
+                                <div class="testimonial-role">Tournament Director</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Case Study 6 -->
+                    <div class="case-study">
+                        <div class="case-image">💻</div>
+                        <div class="case-content">
+                            <div class="case-category">Web Design</div>
+                            <div class="case-title">Local Accounting Firm</div>
+                            <div class="case-challenge">
+                                <div class="case-label">Challenge</div>
+                                <p>Accounting firm needed professional website with client portal for document sharing.</p>
+                            </div>
+                            <div>
+                                <div class="case-label">Solution</div>
+                                <p>Secure client portal website with document management and tax resources.</p>
+                            </div>
+                            <div class="results-grid">
+                                <div class="result-box">
+                                    <div class="result-number">25</div>
+                                    <div class="result-label">New Clients</div>
+                                </div>
+                                <div class="result-box">
+                                    <div class="result-number">95%</div>
+                                    <div class="result-label">Portal Adoption</div>
+                                </div>
+                            </div>
+                            <div class="testimonial-section">
+                                <div class="testimonial-quote">"The client portal has been a game-changer for our practice. Modern, secure, and clients love it."</div>
+                                <div class="testimonial-author">Patricia N.</div>
+                                <div class="testimonial-role">Accounting Partner</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: 3rem;">By The Numbers</h2>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+                    <div style="text-align: center; padding: 2rem; border: 1px solid var(--border); border-radius: var(--radius); background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: var(--cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 0.5rem;">500+</div>
+                        <div style="color: var(--muted);">Projects Completed</div>
+                    </div>
+
+                    <div style="text-align: center; padding: 2rem; border: 1px solid var(--border); border-radius: var(--radius); background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: var(--cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 0.5rem;">200+</div>
+                        <div style="color: var(--muted);">Happy Clients</div>
+                    </div>
+
+                    <div style="text-align: center; padding: 2rem; border: 1px solid var(--border); border-radius: var(--radius); background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: var(--cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 0.5rem;">98%</div>
+                        <div style="color: var(--muted);">Satisfaction Rate</div>
+                    </div>
+
+                    <div style="text-align: center; padding: 2rem; border: 1px solid var(--border); border-radius: var(--radius); background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+                        <div style="font-size: 2.5rem; font-weight: 700; color: var(--cyan); font-family: 'Orbitron', sans-serif; margin-bottom: 0.5rem;">20+</div>
+                        <div style="color: var(--muted);">Years Experience</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <div class="container">
+                <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(0, 168, 204, 0.08) 100%); border: 1px solid rgba(0, 217, 255, 0.3); border-radius: 12px; padding: 4rem 2rem; text-align: center;">
+                    <h2 style="margin-bottom: 1rem;">Your Success Story Starts Here</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Let's discuss how we can help your business grow with the right technology solutions.
+                    </p>
+                    <a href="contact.html" class="cta-btn">Start Your Project</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="web-design.html">Web Design & Development</a></li>
+                        <li><a href="pc-building.html">Custom PC Building</a></li>
+                        <li><a href="iptv.html">Premium IPTV Services</a></li>
+                        <li><a href="faq.html">FAQ & Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Our Work</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Get In Touch</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Phone:</strong>
+                            <a href="tel:+14169884163">+1 (416) 988-4163</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <a href="mailto:HaltonIPTV@gmail.com">HaltonIPTV@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Location:</strong>
+                            <span>Milton, Ontario</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <p>Serving Milton, Burlington, Oakville, and surrounding communities throughout the Halton Region.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Halton Digital & AI. All rights reserved. | Milton, Ontario</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

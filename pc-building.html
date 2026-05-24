@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom PC Building - Gaming, Workstation & Servers | Halton Digital & AI</title>
+    <meta name="description" content="Custom PC builds for gaming, workstations, and servers. Hand-picked components, expert assembly, and local support in Milton, Ontario.">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+        }
+
+        .build-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .build-card {
+            background: linear-gradient(135deg, var(--ink2) 0%, rgba(26, 31, 58, 0.5) 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .build-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+        }
+
+        .build-card:hover {
+            border-color: var(--cyan);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.1);
+        }
+
+        .build-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .spec-item {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+        }
+
+        .spec-label {
+            color: var(--cyan);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .spec-value {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .process-visual {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .process-box {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.08) 0%, transparent 100%);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .process-box::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--cyan);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .process-box:last-child::after {
+            display: none;
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-toggle {
+            color: var(--cyan);
+            font-size: 1.3rem;
+        }
+
+        .warranty-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .warranty-card {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.08) 0%, transparent 100%);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .warranty-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .process-box::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Halton <span>Digital & AI</span></div>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="web-design.html">Web Design</a>
+                <a href="pc-building.html" class="active">PC Building</a>
+                <a href="iptv.html">IPTV</a>
+                <a href="contact.html" class="cta-btn">Get In Touch</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="hero" style="min-height: 60vh;">
+            <div class="hero-content">
+                <h1>Custom PC Building</h1>
+                <p style="font-size: 1.2rem;">Gaming rigs, workstations, and servers built to your exact specifications. Expert assembly, local support, competitive pricing.</p>
+                <div class="hero-ctas">
+                    <button class="cta-btn" onclick="document.getElementById('builds').scrollIntoView()">Explore Builds</button>
+                    <a href="contact.html" class="cta-btn cta-btn-outline">Request Quote</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Custom PCs -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">Why Custom?</span>
+                <h2>Why You Should Build Custom</h2>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 3rem;">
+                    <div>
+                        <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                            Off-the-shelf computers are built for the masses. That means you're often paying for specs you don't need or missing features you actually want. Custom builds are different.
+                        </p>
+
+                        <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                            When you build custom with us, you get exactly what you need — nothing more, nothing less. Better performance, better value, and a machine built specifically for your work.
+                        </p>
+
+                        <ul class="feature-list">
+                            <li>Tailored to your exact needs</li>
+                            <li>Better price-to-performance ratio</li>
+                            <li>Hand-picked quality components</li>
+                            <li>Expert assembly and testing</li>
+                            <li>Local support and upgrades</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, transparent 100%); border-radius: 12px; padding: 3rem; border: 1px solid var(--border); min-height: 400px; display: flex; align-items: center; justify-content: center;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">🖥️</div>
+                            <p style="font-size: 1.1rem;">Built precisely for your workflow</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Build Types -->
+        <section class="section" id="builds" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <span class="section-label">Our Specialty</span>
+                <h2>Three Types Of Builds We Specialize In</h2>
+
+                <div class="build-types">
+                    <div class="build-card">
+                        <div class="build-icon">🎮</div>
+                        <h3>Gaming PCs</h3>
+                        <p>High-performance gaming rigs built for FPS, streaming, or competitive play. From budget to extreme, we've got you covered.</p>
+                        <div class="feature-list" style="margin-top: 1.5rem;">
+                            <strong style="color: var(--cyan);">Starting at $1,200</strong>
+                        </div>
+                        <a href="contact.html" class="cta-btn" style="display: inline-block; margin-top: 1.5rem;">Get A Gaming Quote</a>
+                    </div>
+
+                    <div class="build-card">
+                        <div class="build-icon">⚙️</div>
+                        <h3>Workstations</h3>
+                        <p>Powerful machines for video editing, 3D rendering, data analysis, and professional work. Built for reliability and performance.</p>
+                        <div class="feature-list" style="margin-top: 1.5rem;">
+                            <strong style="color: var(--cyan);">Starting at $1,500</strong>
+                        </div>
+                        <a href="contact.html" class="cta-btn" style="display: inline-block; margin-top: 1.5rem;">Get A Workstation Quote</a>
+                    </div>
+
+                    <div class="build-card">
+                        <div class="build-icon">🔧</div>
+                        <h3>Servers</h3>
+                        <p>Custom servers for small business use. File storage, backups, hosting, or specialized applications. Enterprise-grade at local prices.</p>
+                        <div class="feature-list" style="margin-top: 1.5rem;">
+                            <strong style="color: var(--cyan);">Custom pricing</strong>
+                        </div>
+                        <a href="contact.html" class="cta-btn" style="display: inline-block; margin-top: 1.5rem;">Get A Server Quote</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Process -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">Process</span>
+                <h2>From Concept To Finished Build</h2>
+
+                <div class="process-visual">
+                    <div class="process-box">
+                        <h3 style="color: var(--cyan); margin-bottom: 0.5rem;">1. Consultation</h3>
+                        <p>We discuss your needs, budget, and performance goals.</p>
+                    </div>
+
+                    <div class="process-box">
+                        <h3 style="color: var(--cyan); margin-bottom: 0.5rem;">2. Design</h3>
+                        <p>We recommend components that match your requirements perfectly.</p>
+                    </div>
+
+                    <div class="process-box">
+                        <h3 style="color: var(--cyan); margin-bottom: 0.5rem;">3. Assembly</h3>
+                        <p>Expert building, testing, and optimization.</p>
+                    </div>
+
+                    <div class="process-box">
+                        <h3 style="color: var(--cyan); margin-bottom: 0.5rem;">4. Delivery</h3>
+                        <p>Your machine, fully tested and ready to go.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Example Builds -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <span class="section-label">Example Builds</span>
+                <h2>Sample Configurations</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 3rem;">These are just examples. Every build is customized to your specific needs.</p>
+
+                <div class="grid">
+                    <div class="card">
+                        <h3>Budget Gaming PC</h3>
+                        <p style="color: var(--cyan); font-weight: 600; margin-bottom: 1.5rem;">$1,200 - $1,500</p>
+                        <div class="specs-grid" style="margin-top: 1rem;">
+                            <div class="spec-item">
+                                <div class="spec-label">CPU</div>
+                                <div class="spec-value">Ryzen 5</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">GPU</div>
+                                <div class="spec-value">RTX 4060</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">RAM</div>
+                                <div class="spec-value">16GB DDR5</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Storage</div>
+                                <div class="spec-value">512GB SSD</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Professional Workstation</h3>
+                        <p style="color: var(--cyan); font-weight: 600; margin-bottom: 1.5rem;">$2,000 - $3,000</p>
+                        <div class="specs-grid" style="margin-top: 1rem;">
+                            <div class="spec-item">
+                                <div class="spec-label">CPU</div>
+                                <div class="spec-value">Ryzen 7</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">GPU</div>
+                                <div class="spec-value">RTX 4070</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">RAM</div>
+                                <div class="spec-value">32GB DDR5</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Storage</div>
+                                <div class="spec-value">1TB NVMe SSD</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>High-End Gaming/Streaming</h3>
+                        <p style="color: var(--cyan); font-weight: 600; margin-bottom: 1.5rem;">$2,500 - $4,000</p>
+                        <div class="specs-grid" style="margin-top: 1rem;">
+                            <div class="spec-item">
+                                <div class="spec-label">CPU</div>
+                                <div class="spec-value">Ryzen 9</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">GPU</div>
+                                <div class="spec-value">RTX 4090</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">RAM</div>
+                                <div class="spec-value">64GB DDR5</div>
+                            </div>
+                            <div class="spec-item">
+                                <div class="spec-label">Storage</div>
+                                <div class="spec-value">2TB NVMe SSD</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support & Warranty -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">Support</span>
+                <h2>We Don't Just Build. We Support.</h2>
+
+                <div class="warranty-grid">
+                    <div class="warranty-card">
+                        <div class="warranty-icon">🔧</div>
+                        <h3>Lifetime Support</h3>
+                        <p>Upgrades, maintenance, troubleshooting — we're here whenever you need us.</p>
+                    </div>
+
+                    <div class="warranty-card">
+                        <div class="warranty-icon">✓</div>
+                        <h3>Component Warranty</h3>
+                        <p>Full manufacturer warranty on all components plus our quality guarantee.</p>
+                    </div>
+
+                    <div class="warranty-card">
+                        <div class="warranty-icon">⚡</div>
+                        <h3>Performance Tuning</h3>
+                        <p>We optimize every build for maximum performance in your specific use case.</p>
+                    </div>
+
+                    <div class="warranty-card">
+                        <div class="warranty-icon">💾</div>
+                        <h3>Local Upgrades</h3>
+                        <p>Need more RAM or storage later? Get it installed locally without shipping hassles.</p>
+                    </div>
+
+                    <div class="warranty-card">
+                        <div class="warranty-icon">📞</div>
+                        <h3>Direct Support</h3>
+                        <p>Call or email with questions. No call centers, no hold times. Real people helping real customers.</p>
+                    </div>
+
+                    <div class="warranty-card">
+                        <div class="warranty-icon">🚀</div>
+                        <h3>Free Setup</h3>
+                        <p>OS installation, driver setup, and basic software configuration included.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="section">
+            <div class="container">
+                <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(0, 168, 204, 0.08) 100%); border: 1px solid rgba(0, 217, 255, 0.3); border-radius: 12px; padding: 4rem 2rem; text-align: center;">
+                    <h2 style="margin-bottom: 1rem;">Ready For Your Custom Build?</h2>
+                    <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                        Tell us about your needs, and we'll design the perfect machine for your budget and requirements.
+                    </p>
+                    <a href="contact.html" class="cta-btn">Request A PC Quote</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="web-design.html">Web Design & Development</a></li>
+                        <li><a href="pc-building.html">Custom PC Building</a></li>
+                        <li><a href="iptv.html">Premium IPTV Services</a></li>
+                        <li><a href="faq.html">FAQ & Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Our Work</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Get In Touch</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Phone:</strong>
+                            <a href="tel:+14169884163">+1 (416) 988-4163</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <a href="mailto:HaltonIPTV@gmail.com">HaltonIPTV@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Location:</strong>
+                            <span>Milton, Ontario</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <p>Serving Milton, Burlington, Oakville, and surrounding communities throughout the Halton Region.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Halton Digital & AI. All rights reserved. | Milton, Ontario</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
