@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halton Digital & AI - Web Design, Custom PCs, IPTV Services</title>
+    <meta name="description" content="Halton Digital & AI offers professional web design, custom PC building, and premium IPTV services for small businesses in Milton, Burlington, Oakville.">
+    <meta name="keywords" content="web design Milton, custom PC building, IPTV services, small business tech solutions">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .section-label {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 2rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .stat-label {
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .two-col.reverse {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .two-col.reverse > :first-child {
+            order: 2;
+        }
+
+        .two-col.reverse > :last-child {
+            order: 1;
+        }
+
+        @media (max-width: 768px) {
+            .two-col {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .two-col.reverse > :first-child {
+                order: 0;
+            }
+
+            .two-col.reverse > :last-child {
+                order: 0;
+            }
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 217, 255, 0.05) 100%);
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            border-radius: var(--radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .highlight-box strong {
+            color: var(--cyan);
+        }
+
+        .service-grid {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.1) 0%, rgba(0, 168, 204, 0.05) 100%);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: var(--radius);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Halton <span>Digital & AI</span></div>
+            <nav>
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About</a>
+                <a href="web-design.html">Web Design</a>
+                <a href="pc-building.html">PC Building</a>
+                <a href="custom-builder.html">Build Your Own</a>
+                <a href="iptv.html">IPTV</a>
+                <a href="contact.html" class="cta-btn">Get In Touch</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Your <span>Digital Partner</span> Powered by AI</h1>
+                <p>Professional web design, custom PC builds, and premium IPTV services for small businesses in Milton, Burlington, and Oakville</p>
+                <div class="hero-ctas">
+                    <button class="cta-btn" onclick="document.getElementById('contact').scrollIntoView()">Start Project</button>
+                    <a href="about.html" class="cta-btn cta-btn-outline">Learn More</a>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Expert Team Members</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Canadian Infrastructure</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Overview -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">What We Do</span>
+                <h2>Three Ways We Make Technology Work For You</h2>
+                <p style="font-size: 1.1rem; max-width: 600px; margin-bottom: 3rem;">From your first website to custom-built machines and premium streaming — we handle the tech so you can focus on what you do best.</p>
+
+                <div class="grid service-grid">
+                    <div class="card">
+                        <div class="card-icon">🌐</div>
+                        <h3>Web Design & Development</h3>
+                        <p>Professional e-commerce, corporate, and custom websites built on Canadian servers with your data protected locally.</p>
+                        <div class="card-badge">AI-Enhanced</div>
+                        <a href="web-design.html" style="display: inline-block; margin-top: 1.5rem; font-weight: 600;">Learn More →</a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🖥️</div>
+                        <h3>Custom PC Building</h3>
+                        <p>Gaming PCs, workstations, and servers built to your exact specifications and budget. Expert assembly and testing included.</p>
+                        <div class="card-badge">Custom Built</div>
+                        <a href="pc-building.html" style="display: inline-block; margin-top: 1.5rem; font-weight: 600;">Learn More →</a>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">📺</div>
+                        <h3>Premium IPTV Services</h3>
+                        <p>Access thousands of live channels with customized content packages. North American, European, Asian, and more. Starting at $7.99/month.</p>
+                        <div class="card-badge">Premium Streams</div>
+                        <a href="iptv.html" style="display: inline-block; margin-top: 1.5rem; font-weight: 600;">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us -->
+        <section class="section" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+            <div class="container">
+                <span class="section-label">Why Choose Us</span>
+                <h2>Local Expertise. Real Results.</h2>
+
+                <div class="two-col">
+                    <div>
+                        <h3 style="color: var(--cyan); margin-bottom: 2rem;">Five Reasons To Partner With Us</h3>
+                        <ul class="feature-list">
+                            <li><strong>20+ Years Experience</strong> — Serving Milton, Burlington, Oakville since 2004</li>
+                            <li><strong>Canadian Data & Providers</strong> — Your data stays in Canadian datacentres. No exceptions.</li>
+                            <li><strong>Local Expertise</strong> — Direct relationships, personal attention, no call centers</li>
+                            <li><strong>All-In-One Services</strong> — Web design, PC building, IPTV, all from one trusted partner</li>
+                            <li><strong>Competitive Pricing</strong> — Premium quality without the premium price tag</li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <div class="highlight-box">
+                            <h4 style="color: #ffffff; margin-bottom: 1rem;">Serving Milton, Burlington, Oakville & Surrounding Areas</h4>
+                            <p>Harry and his team have been the tech backbone for hundreds of small businesses across the Halton region. We know your market. We understand your challenges.</p>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4 style="color: #ffffff; margin-bottom: 1rem;">2-4 Week Website Turnaround</h4>
+                            <p>Need a website fast? We deliver professional, fully-functional sites in 2-4 weeks without cutting corners on quality.</p>
+                        </div>
+
+                        <div class="highlight-box">
+                            <h4 style="color: #ffffff; margin-bottom: 1rem;">Flexible Pricing & Packages</h4>
+                            <p>Work with us on your timeline and budget. Starter sites, full e-commerce builds, or custom solutions — we have options.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Work / Social Proof -->
+        <section class="section">
+            <div class="container">
+                <span class="section-label">Our Work</span>
+                <h2>Trusted by Local Businesses</h2>
+                <p style="font-size: 1.1rem; max-width: 600px; margin-bottom: 3rem;">See how we've helped businesses in your area grow with technology.</p>
+
+                <div class="grid">
+                    <div class="card">
+                        <h3>Milton E-Commerce Store</h3>
+                        <p>"Our online sales increased 40% after Harry redesigned our website. Professional, fast, and they understood our business from day one."</p>
+                        <div style="color: var(--cyan); font-weight: 600; margin-top: 1rem;">Sarah M. - Local Retail</div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Burlington Tech Startup</h3>
+                        <p>"They built us a custom workstation for video production that handles everything we throw at it. Expert guidance throughout the process."</p>
+                        <div style="color: var(--cyan); font-weight: 600; margin-top: 1rem;">James P. - Media Company</div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Oakville Fitness Center</h3>
+                        <p>"Best decision we made. The IPTV setup brings the sports channels our members love, and the service is incredible."</p>
+                        <div style="color: var(--cyan); font-weight: 600; margin-top: 1rem;">Mike T. - Gym Owner</div>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <h2>Ready to Get Started?</h2>
+                    <p>Let's discuss how we can help your business grow with the right technology solutions.</p>
+                    <a href="contact.html" class="cta-btn">Schedule Your Free Consultation</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="web-design.html">Web Design & Development</a></li>
+                        <li><a href="pc-building.html">Custom PC Building</a></li>
+                        <li><a href="iptv.html">Premium IPTV Services</a></li>
+                        <li><a href="faq.html">FAQ & Support</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Our Work</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Get In Touch</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <strong>Phone:</strong>
+                            <a href="tel:+14169884163">+1 (416) 988-4163</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Email:</strong>
+                            <a href="mailto:HaltonIPTV@gmail.com">HaltonIPTV@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <strong>Location:</strong>
+                            <span>Milton, Ontario</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <p>Serving Milton, Burlington, Oakville, and surrounding communities throughout the Halton Region.</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 Halton Digital & AI. All rights reserved. | Milton, Ontario</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
