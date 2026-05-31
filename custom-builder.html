@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Custom PC Builder - Build Your Own | Halton Digital & AI</title>
+<meta name="description" content="Build your own custom PC. Choose AMD or Intel, then pick low, mid, or high-end components. Get an instant quote request from Halton Digital & AI in Milton, Ontario.">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.hero h1 { font-family: 'Orbitron', sans-serif; font-weight: 900; }
+
+/* ---- Platform (AMD / Intel) selection ---- */
+.platform-select {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+.platform-card {
+  background: linear-gradient(135deg, var(--ink2) 0%, rgba(26, 31, 58, 0.5) 100%);
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.platform-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+}
+.platform-card:hover { border-color: var(--cyan); transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0, 217, 255, 0.12); }
+.platform-card.selected { border-color: var(--cyan); box-shadow: 0 0 0 1px var(--cyan), 0 20px 40px rgba(0, 217, 255, 0.15); }
+.platform-card .platform-icon { font-size: 3rem; margin-bottom: 1rem; }
+.platform-card h3 { font-family: 'Orbitron', sans-serif; letter-spacing: 1px; margin-bottom: 0.5rem; }
+.platform-badge {
+  display: inline-block; margin-top: 1rem; padding: 0.4rem 1rem;
+  border: 1px solid var(--cyan); border-radius: 100px;
+  color: var(--cyan); font-size: 0.8rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1px; opacity: 0; transition: opacity 0.3s ease;
+}
+.platform-card.selected .platform-badge { opacity: 1; }
+
+/* ---- Builder ---- */
+#builder { display: none; }
+#builder.active { display: block; }
+
+.builder-layout { display: grid; grid-template-columns: 1fr 340px; gap: 2.5rem; align-items: start; margin-top: 2rem; }
+
+.component-block { margin-bottom: 2.5rem; }
+.component-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+.component-head .c-icon { font-size: 1.6rem; }
+.component-head h3 { font-family: 'Orbitron', sans-serif; font-size: 1.15rem; letter-spacing: 0.5px; margin: 0; }
+.component-head .req { color: var(--cyan); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-left: auto; opacity: 0.7; }
+
+.tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.tier-card {
+  background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+.tier-card:hover { border-color: var(--cyan); transform: translateY(-3px); }
+.tier-card.selected { border-color: var(--cyan); background: linear-gradient(135deg, rgba(0, 217, 255, 0.12) 0%, transparent 100%); box-shadow: 0 0 0 1px var(--cyan); }
+.tier-label { color: var(--cyan); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; }
+.tier-part { color: #fff; font-size: 0.95rem; font-weight: 600; min-height: 2.4em; line-height: 1.2; }
+.tier-price { margin-top: 0.75rem; color: var(--cyan); font-weight: 700; font-size: 1rem; }
+.tier-card .check { position: absolute; top: 0.6rem; right: 0.75rem; color: var(--cyan); font-weight: 700; opacity: 0; transition: opacity 0.2s ease; }
+.tier-card.selected .check { opacity: 1; }
+
+/* ---- Summary sidebar ---- */
+.summary {
+  background: linear-gradient(135deg, var(--ink2) 0%, rgba(26, 31, 58, 0.5) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  position: sticky;
+  top: 1.5rem;
+}
+.summary h3 { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
+.summary .sum-platform { color: var(--cyan); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1.25rem; }
+.sum-list { list-style: none; padding: 0; margin: 0 0 1.25rem; }
+.sum-list li { display: flex; justify-content: space-between; gap: 0.5rem; padding: 0.6rem 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+.sum-list li:last-child { border-bottom: none; }
+.sum-list .sl-name { color: rgba(255,255,255,0.55); }
+.sum-list .sl-val { color: #fff; text-align: right; font-weight: 600; }
+.sum-list .sl-val.empty { color: rgba(255,255,255,0.3); font-weight: 400; font-style: italic; }
+.sum-total { display: flex; justify-content: space-between; align-items: baseline; padding-top: 1rem; border-top: 2px solid var(--cyan); margin-bottom: 1.5rem; }
+.sum-total .lbl { font-family: 'Orbitron', sans-serif; font-size: 0.9rem; letter-spacing: 1px; }
+.sum-total .amt { font-family: 'Orbitron', sans-serif; color: var(--cyan); font-size: 1.5rem; font-weight: 700; }
+.summary .cta-btn { width: 100%; text-align: center; }
+.summary .reset-link { display: block; text-align: center; margin-top: 1rem; color: rgba(255,255,255,0.5); font-size: 0.8rem; cursor: pointer; background: none; border: none; width: 100%; }
+.summary .reset-link:hover { color: var(--cyan); }
+.sum-note { margin-top: 1rem; font-size: 0.72rem; color: rgba(255,255,255,0.4); line-height: 1.5; text-align: center; }
+
+@media (max-width: 900px) {
+  .builder-layout { grid-template-columns: 1fr; }
+  .summary { position: static; }
+  .tier-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<!-- Header -->
+<header>
+  <div class="header-container">
+    <div class="logo">Halton <span>Digital & AI</span></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="web-design.html">Web Design</a>
+      <a href="pc-building.html" class="active">PC Building</a>
+      <a href="custom-builder.html" class="active">Build Your Own</a>
+      <a href="iptv.html">IPTV</a>
+      <a href="contact.html" class="cta-btn">Get In Touch</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Hero -->
+  <section class="hero" style="min-height: 50vh;">
+    <div class="hero-content">
+      <h1>Build Your Own PC</h1>
+      <p style="font-size: 1.2rem;">Pick your platform, then choose your components tier by tier. Watch your build come together with a live price estimate, then send it to us for a quote.</p>
+    </div>
+  </section>
+
+  <!-- Step 1: Platform -->
+  <section class="section" id="platform">
+    <div class="container">
+      <span class="section-label">Step 1</span>
+      <h2>Choose Your Platform</h2>
+      <p style="font-size: 1.1rem;">Start by selecting the processor family your build will be based on.</p>
+      <div class="platform-select">
+        <div class="platform-card" data-platform="AMD" onclick="selectPlatform('AMD', this)">
+          <div class="platform-icon">🔴</div>
+          <h3>AMD</h3>
+          <p>Ryzen processors — excellent multi-core value and gaming performance.</p>
+          <div class="platform-badge">Selected</div>
+        </div>
+        <div class="platform-card" data-platform="Intel" onclick="selectPlatform('Intel', this)">
+          <div class="platform-icon">🔵</div>
+          <h3>Intel</h3>
+          <p>Core processors — strong single-core speed and broad compatibility.</p>
+          <div class="platform-badge">Selected</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 2: Builder -->
+  <section class="section" id="builder" style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.05) 0%, transparent 100%);">
+    <div class="container">
+      <span class="section-label">Step 2</span>
+      <h2>Configure Your Components</h2>
+      <p style="font-size: 1.1rem;">Choose a tier for each part. Every PC needs all components below for a complete build.</p>
+
+      <div class="builder-layout">
+        <!-- Components get injected here -->
+        <div id="components"></div>
+
+        <!-- Summary sidebar -->
+        <aside class="summary">
+          <h3>Your Build</h3>
+          <div class="sum-platform" id="sumPlatform">— No platform —</div>
+          <ul class="sum-list" id="sumList"></ul>
+          <div class="sum-total">
+            <span class="lbl">Est. Total</span>
+            <span class="amt" id="sumTotal">$0</span>
+          </div>
+          <a href="#" class="cta-btn" id="requestBtn" onclick="requestBuild(event)">Request This Build</a>
+          <button class="reset-link" onclick="resetBuild()">Reset build</button>
+          <p class="sum-note">Prices are estimates for hardware only and may vary with market availability. Final quote confirmed by Halton Digital & AI.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section">
+    <div class="container">
+      <div style="background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(0, 168, 204, 0.08) 100%); border: 1px solid rgba(0, 217, 255, 0.3); border-radius: 12px; padding: 4rem 2rem; text-align: center;">
+        <h2 style="margin-bottom: 1rem;">Not Sure Where To Start?</h2>
+        <p style="font-size: 1.1rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+          Prefer to have us recommend the parts? Tell us your budget and what you'll use it for, and we'll design the perfect machine.
+        </p>
+        <a href="pc-building.html" class="cta-btn cta-btn-outline">See Our Build Services</a>
+        <a href="contact.html" class="cta-btn">Talk To Us</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="web-design.html">Web Design & Development</a></li>
+          <li><a href="pc-building.html">Custom PC Building</a></li>
+          <li><a href="iptv.html">Premium IPTV Services</a></li>
+          <li><a href="faq.html">FAQ & Support</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="portfolio.html">Our Work</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Get In Touch</h4>
+        <div class="contact-info">
+          <div class="contact-item"><strong>Phone:</strong> <a href="tel:+14169884163">+1 (416) 988-4163</a></div>
+          <div class="contact-item"><strong>Email:</strong> <a href="mailto:HaltonIPTV@gmail.com">HaltonIPTV@gmail.com</a></div>
+          <div class="contact-item"><strong>Location:</strong> <span>Milton, Ontario</span></div>
+        </div>
+      </div>
+      <div class="footer-section">
+        <h4>Service Areas</h4>
+        <p>Serving Milton, Burlington, Oakville, and surrounding communities throughout the Halton Region.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Halton Digital & AI. All rights reserved. | Milton, Ontario</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================================
+   CUSTOM PC BUILDER — EDIT YOUR PARTS & PRICES HERE
+   -------------------------------------------------------------------------
+   For each component, fill in the part name and price for:
+     low  = budget / entry-level tier
+     mid  = mid-range tier
+     high = high-end tier
+   ...for BOTH "AMD" and "Intel" platforms.
+
+   Leave the part name as "" (empty) and price as 0 until you fill it in.
+   Prices are numbers only (no $ sign), in CAD.
+
+   Components shared between AMD & Intel (RAM, Storage, PSU, Case, Cooling)
+   can just be filled in the same on both — or differ if you prefer.
+   ========================================================================= */
+const PARTS = {
+  AMD: {
+    cpu:        { icon: "🧠", name: "Processor (CPU)",      tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    motherboard:{ icon: "🔌", name: "Motherboard",          tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    gpu:        { icon: "🎮", name: "Graphics Card (GPU)",  tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    ram:        { icon: "📊", name: "Memory (RAM)",         tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    storage:    { icon: "💾", name: "Storage (SSD)",        tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    psu:        { icon: "⚡", name: "Power Supply (PSU)",    tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    case:       { icon: "🗄️", name: "Case",                 tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    cooling:    { icon: "❄️", name: "CPU Cooling",          tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } }
+  },
+  Intel: {
+    cpu:        { icon: "🧠", name: "Processor (CPU)",      tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    motherboard:{ icon: "🔌", name: "Motherboard",          tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    gpu:        { icon: "🎮", name: "Graphics Card (GPU)",  tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    ram:        { icon: "📊", name: "Memory (RAM)",         tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    storage:    { icon: "💾", name: "Storage (SSD)",        tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    psu:        { icon: "⚡", name: "Power Supply (PSU)",    tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    case:       { icon: "🗄️", name: "Case",                 tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
+    cooling:    { icon: "❄️", name: "CPU Cooling",          tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } }
+  }
+};
+
+const TIER_LABELS = { low: "Budget", mid: "Mid-Range", high: "High-End" };
+const TIER_ORDER = ["low", "mid", "high"];
+
+let platform = null;
+let selections = {}; // { componentKey: "low" | "mid" | "high" }
+
+function selectPlatform(p, el) {
+  platform = p;
+  selections = {};
+  document.querySelectorAll('.platform-card').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  renderComponents();
+  document.getElementById('builder').classList.add('active');
+  document.getElementById('builder').scrollIntoView({ behavior: 'smooth' });
+  updateSummary();
+}
+
+function fmt(n) { return '$' + Number(n).toLocaleString('en-CA'); }
+
+function renderComponents() {
+  const wrap = document.getElementById('components');
+  const comps = PARTS[platform];
+  let html = '';
+  for (const key in comps) {
+    const c = comps[key];
+    html += `<div class="component-block">
+      <div class="component-head">
+        <span class="c-icon">${c.icon}</span>
+        <h3>${c.name}</h3>
+        <span class="req">Required</span>
+      </div>
+      <div class="tier-grid">`;
+    TIER_ORDER.forEach(tier => {
+      const t = c.tiers[tier];
+      const partText = t.part ? t.part : '<span style="color:rgba(255,255,255,0.3);font-style:italic;">To be added</span>';
+      const priceText = t.price ? fmt(t.price) : '—';
+      html += `<div class="tier-card" data-comp="${key}" data-tier="${tier}" onclick="selectTier('${key}','${tier}',this)">
+        <span class="check">✓</span>
+        <div class="tier-label">${TIER_LABELS[tier]}</div>
+        <div class="tier-part">${partText}</div>
+        <div class="tier-price">${priceText}</div>
+      </div>`;
+    });
+    html += `</div></div>`;
+  }
+  wrap.innerHTML = html;
+}
+
+function selectTier(comp, tier, el) {
+  selections[comp] = tier;
+  document.querySelectorAll(`.tier-card[data-comp="${comp}"]`).forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  updateSummary();
+}
+
+function updateSummary() {
+  document.getElementById('sumPlatform').textContent = platform ? platform + ' Platform' : '— No platform —';
+  const comps = PARTS[platform] || {};
+  const list = document.getElementById('sumList');
+  let total = 0;
+  let html = '';
+  for (const key in comps) {
+    const c = comps[key];
+    const tier = selections[key];
+    if (tier) {
+      const t = c.tiers[tier];
+      const partLabel = t.part ? t.part : TIER_LABELS[tier] + ' (TBD)';
+      html += `<li><span class="sl-name">${c.name}</span><span class="sl-val">${partLabel}${t.price ? ' · ' + fmt(t.price) : ''}</span></li>`;
+      total += Number(t.price) || 0;
+    } else {
+      html += `<li><span class="sl-name">${c.name}</span><span class="sl-val empty">Not selected</span></li>`;
+    }
+  }
+  list.innerHTML = html;
+  document.getElementById('sumTotal').textContent = fmt(total);
+}
+
+function resetBuild() {
+  selections = {};
+  document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
+  updateSummary();
+}
+
+function requestBuild(e) {
+  e.preventDefault();
+  if (!platform) { alert('Please choose a platform first.'); return; }
+  const comps = PARTS[platform];
+  const missing = Object.keys(comps).filter(k => !selections[k]);
+  if (missing.length) {
+    alert('Please select a tier for every component before requesting a quote.\n\nStill needed: ' + missing.map(k => comps[k].name).join(', '));
+    return;
+  }
+  // Build a readable summary to pass to the contact page
+  let lines = ['Custom PC Build Request', '=======================', 'Platform: ' + platform, ''];
+  let total = 0;
+  for (const key in comps) {
+    const c = comps[key];
+    const t = c.tiers[selections[key]];
+    const partLabel = t.part ? t.part : '(' + TIER_LABELS[selections[key]] + ' — TBD)';
+    lines.push(c.name + ': ' + partLabel + ' [' + TIER_LABELS[selections[key]] + ']' + (t.price ? ' — ' + fmt(t.price) : ''));
+    total += Number(t.price) || 0;
+  }
+  lines.push('', 'Estimated Total: ' + fmt(total));
+  const summary = lines.join('\n');
+  // Pass to contact page via query string; contact page can read ?build=
+  const url = 'contact.html?build=' + encodeURIComponent(summary);
+  window.location.href = url;
+}
+</script>
+</body>
+</html>
