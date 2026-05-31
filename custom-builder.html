@@ -54,10 +54,28 @@
 .builder-layout { display: grid; grid-template-columns: 1fr 340px; gap: 2.5rem; align-items: start; margin-top: 2rem; }
 
 .component-block { margin-bottom: 2.5rem; }
-.component-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; }
+.component-head { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem; flex-wrap: wrap; }
 .component-head .c-icon { font-size: 1.6rem; }
 .component-head h3 { font-family: 'Orbitron', sans-serif; font-size: 1.15rem; letter-spacing: 0.5px; margin: 0; }
 .component-head .req { color: var(--cyan); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-left: auto; opacity: 0.7; }
+
+/* ---- GPU brand toggle ---- */
+.brand-toggle { display: inline-flex; gap: 0.5rem; margin-left: 0.75rem; }
+.brand-btn {
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.brand-btn:hover { border-color: var(--cyan); color: #fff; }
+.brand-btn.active { border-color: var(--cyan); background: rgba(0, 217, 255, 0.12); color: var(--cyan); box-shadow: 0 0 0 1px var(--cyan); }
 
 .tier-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .tier-card {
@@ -163,7 +181,7 @@
     <div class="container">
       <span class="section-label">Step 2</span>
       <h2>Configure Your Components</h2>
-      <p style="font-size: 1.1rem;">Choose a tier for each part. Every PC needs all components below for a complete build.</p>
+      <p style="font-size: 1.1rem;">Choose a tier for each part. For your graphics card, pick NVIDIA or AMD first, then choose a tier. Every PC needs all components below for a complete build.</p>
 
       <div class="builder-layout">
         <!-- Components get injected here -->
@@ -210,6 +228,7 @@
         <ul>
           <li><a href="web-design.html">Web Design & Development</a></li>
           <li><a href="pc-building.html">Custom PC Building</a></li>
+          <li><a href="custom-builder.html">Build Your Own PC</a></li>
           <li><a href="iptv.html">Premium IPTV Services</a></li>
           <li><a href="faq.html">FAQ & Support</a></li>
         </ul>
@@ -251,44 +270,53 @@
      high = high-end tier
    ...for BOTH "AMD" and "Intel" platforms.
 
-   Leave the part name as "" (empty) and price as 0 until you fill it in.
    Prices are numbers only (no $ sign), in CAD.
 
-   Components shared between AMD & Intel (RAM, Storage, PSU, Case, Cooling)
-   can just be filled in the same on both — or differ if you prefer.
+   GPU IS SPECIAL: the graphics card has TWO brands (nvidia / amd), each
+   with its own low/mid/high tiers. Users toggle the brand on the page.
+   Edit gpu.brands.nvidia.* and gpu.brands.amd.* below.
    ========================================================================= */
 const PARTS = {
   AMD: {
-    cpu:        { icon: "🧠", name: "Processor (CPU)",      tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    motherboard:{ icon: "🔌", name: "Motherboard",          tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    gpu:        { icon: "🎮", name: "Graphics Card (GPU)",  tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    ram:        { icon: "📊", name: "Memory (RAM)",         tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    storage:    { icon: "💾", name: "Storage (SSD)",        tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    psu:        { icon: "⚡", name: "Power Supply (PSU)",    tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    case:       { icon: "🗄️", name: "Case",                 tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    cooling:    { icon: "❄️", name: "CPU Cooling",          tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } }
+    cpu:        { icon: "🧠", name: "Processor (CPU)",      tiers: { low: {part: "Ryzen 5 7600", price: 280}, mid: {part: "Ryzen 7 9800X3D", price: 640}, high: {part: "Ryzen 9 9950X3D", price: 960} } },
+    motherboard:{ icon: "🔌", name: "Motherboard",          tiers: { low: {part: "B650M (AM5)", price: 180}, mid: {part: "B850 (AM5)", price: 280}, high: {part: "X870E (AM5)", price: 520} } },
+    gpu:        { icon: "🎮", name: "Graphics Card (GPU)",  isGpu: true, brands: {
+                    nvidia: { low: {part: "NVIDIA RTX 5060", price: 430}, mid: {part: "NVIDIA RTX 5070", price: 750}, high: {part: "NVIDIA RTX 5080", price: 1600} },
+                    amd:    { low: {part: "AMD RX 9060 XT", price: 430}, mid: {part: "AMD RX 9070", price: 850}, high: {part: "AMD RX 9070 XT", price: 1050} }
+                 } },
+    ram:        { icon: "📊", name: "Memory (RAM)",         tiers: { low: {part: "16GB DDR5-6000", price: 90}, mid: {part: "32GB DDR5-6000", price: 160}, high: {part: "64GB DDR5-6000", price: 320} } },
+    storage:    { icon: "💾", name: "Storage (SSD)",        tiers: { low: {part: "1TB NVMe SSD", price: 110}, mid: {part: "2TB NVMe SSD", price: 210}, high: {part: "4TB NVMe SSD", price: 450} } },
+    psu:        { icon: "⚡", name: "Power Supply (PSU)",    tiers: { low: {part: "550W Bronze", price: 80}, mid: {part: "750W Gold", price: 140}, high: {part: "1000W Gold", price: 230} } },
+    case:       { icon: "🗄️", name: "Case",                 tiers: { low: {part: "Mid-Tower ATX", price: 80}, mid: {part: "Airflow ATX", price: 150}, high: {part: "Premium ATX", price: 280} } },
+    cooling:    { icon: "❄️", name: "CPU Cooling",          tiers: { low: {part: "Air Cooler", price: 45}, mid: {part: "240mm AIO", price: 130}, high: {part: "360mm AIO", price: 220} } }
   },
   Intel: {
-    cpu:        { icon: "🧠", name: "Processor (CPU)",      tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    motherboard:{ icon: "🔌", name: "Motherboard",          tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    gpu:        { icon: "🎮", name: "Graphics Card (GPU)",  tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    ram:        { icon: "📊", name: "Memory (RAM)",         tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    storage:    { icon: "💾", name: "Storage (SSD)",        tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    psu:        { icon: "⚡", name: "Power Supply (PSU)",    tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    case:       { icon: "🗄️", name: "Case",                 tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } },
-    cooling:    { icon: "❄️", name: "CPU Cooling",          tiers: { low: {part: "", price: 0}, mid: {part: "", price: 0}, high: {part: "", price: 0} } }
+    cpu:        { icon: "🧠", name: "Processor (CPU)",      tiers: { low: {part: "Core Ultra 5 225", price: 300}, mid: {part: "Core Ultra 7 265K", price: 520}, high: {part: "Core Ultra 9 285K", price: 820} } },
+    motherboard:{ icon: "🔌", name: "Motherboard",          tiers: { low: {part: "B860M (LGA1851)", price: 220}, mid: {part: "B860 (LGA1851)", price: 300}, high: {part: "Z890 (LGA1851)", price: 560} } },
+    gpu:        { icon: "🎮", name: "Graphics Card (GPU)",  isGpu: true, brands: {
+                    nvidia: { low: {part: "NVIDIA RTX 5060", price: 430}, mid: {part: "NVIDIA RTX 5070", price: 750}, high: {part: "NVIDIA RTX 5080", price: 1600} },
+                    amd:    { low: {part: "AMD RX 9060 XT", price: 430}, mid: {part: "AMD RX 9070", price: 850}, high: {part: "AMD RX 9070 XT", price: 1050} }
+                 } },
+    ram:        { icon: "📊", name: "Memory (RAM)",         tiers: { low: {part: "16GB DDR5-6000", price: 90}, mid: {part: "32GB DDR5-6000", price: 160}, high: {part: "64GB DDR5-6000", price: 320} } },
+    storage:    { icon: "💾", name: "Storage (SSD)",        tiers: { low: {part: "1TB NVMe SSD", price: 110}, mid: {part: "2TB NVMe SSD", price: 210}, high: {part: "4TB NVMe SSD", price: 450} } },
+    psu:        { icon: "⚡", name: "Power Supply (PSU)",    tiers: { low: {part: "550W Bronze", price: 80}, mid: {part: "750W Gold", price: 140}, high: {part: "1000W Gold", price: 230} } },
+    case:       { icon: "🗄️", name: "Case",                 tiers: { low: {part: "Mid-Tower ATX", price: 80}, mid: {part: "Airflow ATX", price: 150}, high: {part: "Premium ATX", price: 280} } },
+    cooling:    { icon: "❄️", name: "CPU Cooling",          tiers: { low: {part: "Air Cooler", price: 45}, mid: {part: "240mm AIO", price: 130}, high: {part: "360mm AIO", price: 220} } }
   }
 };
 
 const TIER_LABELS = { low: "Budget", mid: "Mid-Range", high: "High-End" };
 const TIER_ORDER = ["low", "mid", "high"];
+const BRAND_LABELS = { nvidia: "NVIDIA", amd: "AMD" };
 
 let platform = null;
-let selections = {}; // { componentKey: "low" | "mid" | "high" }
+let selections = {};      // { componentKey: "low" | "mid" | "high" }
+let gpuBrand = "nvidia";  // currently selected GPU brand
 
 function selectPlatform(p, el) {
   platform = p;
   selections = {};
+  gpuBrand = "nvidia";
   document.querySelectorAll('.platform-card').forEach(c => c.classList.remove('selected'));
   el.classList.add('selected');
   renderComponents();
@@ -299,6 +327,11 @@ function selectPlatform(p, el) {
 
 function fmt(n) { return '$' + Number(n).toLocaleString('en-CA'); }
 
+// Returns the active tiers object for a component (handles GPU brand)
+function getTiers(comp) {
+  return comp.isGpu ? comp.brands[gpuBrand] : comp.tiers;
+}
+
 function renderComponents() {
   const wrap = document.getElementById('components');
   const comps = PARTS[platform];
@@ -308,15 +341,24 @@ function renderComponents() {
     html += `<div class="component-block">
       <div class="component-head">
         <span class="c-icon">${c.icon}</span>
-        <h3>${c.name}</h3>
-        <span class="req">Required</span>
+        <h3>${c.name}</h3>`;
+    if (c.isGpu) {
+      html += `<div class="brand-toggle">`;
+      for (const b in c.brands) {
+        html += `<button class="brand-btn ${b === gpuBrand ? 'active' : ''}" data-brand="${b}" onclick="selectBrand('${b}')">${BRAND_LABELS[b]}</button>`;
+      }
+      html += `</div>`;
+    }
+    html += `<span class="req">Required</span>
       </div>
       <div class="tier-grid">`;
+    const tiers = getTiers(c);
     TIER_ORDER.forEach(tier => {
-      const t = c.tiers[tier];
+      const t = tiers[tier];
       const partText = t.part ? t.part : '<span style="color:rgba(255,255,255,0.3);font-style:italic;">To be added</span>';
       const priceText = t.price ? fmt(t.price) : '—';
-      html += `<div class="tier-card" data-comp="${key}" data-tier="${tier}" onclick="selectTier('${key}','${tier}',this)">
+      const sel = selections[key] === tier ? 'selected' : '';
+      html += `<div class="tier-card ${sel}" data-comp="${key}" data-tier="${tier}" onclick="selectTier('${key}','${tier}',this)">
         <span class="check">✓</span>
         <div class="tier-label">${TIER_LABELS[tier]}</div>
         <div class="tier-part">${partText}</div>
@@ -326,6 +368,13 @@ function renderComponents() {
     html += `</div></div>`;
   }
   wrap.innerHTML = html;
+}
+
+function selectBrand(brand) {
+  gpuBrand = brand;
+  // Re-render so GPU tiers update; keep all existing selections intact
+  renderComponents();
+  updateSummary();
 }
 
 function selectTier(comp, tier, el) {
@@ -345,7 +394,7 @@ function updateSummary() {
     const c = comps[key];
     const tier = selections[key];
     if (tier) {
-      const t = c.tiers[tier];
+      const t = getTiers(c)[tier];
       const partLabel = t.part ? t.part : TIER_LABELS[tier] + ' (TBD)';
       html += `<li><span class="sl-name">${c.name}</span><span class="sl-val">${partLabel}${t.price ? ' · ' + fmt(t.price) : ''}</span></li>`;
       total += Number(t.price) || 0;
@@ -359,7 +408,8 @@ function updateSummary() {
 
 function resetBuild() {
   selections = {};
-  document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('selected'));
+  gpuBrand = "nvidia";
+  renderComponents();
   updateSummary();
 }
 
@@ -377,14 +427,13 @@ function requestBuild(e) {
   let total = 0;
   for (const key in comps) {
     const c = comps[key];
-    const t = c.tiers[selections[key]];
+    const t = getTiers(c)[selections[key]];
     const partLabel = t.part ? t.part : '(' + TIER_LABELS[selections[key]] + ' — TBD)';
     lines.push(c.name + ': ' + partLabel + ' [' + TIER_LABELS[selections[key]] + ']' + (t.price ? ' — ' + fmt(t.price) : ''));
     total += Number(t.price) || 0;
   }
   lines.push('', 'Estimated Total: ' + fmt(total));
   const summary = lines.join('\n');
-  // Pass to contact page via query string; contact page can read ?build=
   const url = 'contact.html?build=' + encodeURIComponent(summary);
   window.location.href = url;
 }
