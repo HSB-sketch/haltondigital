@@ -58,6 +58,8 @@
 .component-head .c-icon { font-size: 1.6rem; }
 .component-head h3 { font-family: 'Orbitron', sans-serif; font-size: 1.15rem; letter-spacing: 0.5px; margin: 0; }
 .component-head .req { color: var(--cyan); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-left: auto; opacity: 0.7; }
+.component-note { font-size: 0.78rem; color: rgba(255, 200, 120, 0.9); margin: -0.5rem 0 1rem; display: flex; gap: 0.4rem; align-items: flex-start; line-height: 1.4; }
+.component-note .note-icon { flex-shrink: 0; }
 
 /* ---- GPU brand toggle ---- */
 .brand-toggle { display: inline-flex; gap: 0.5rem; margin-left: 0.75rem; }
@@ -284,11 +286,11 @@ const PARTS = {
                     nvidia: { low: {part: "NVIDIA RTX 5060", price: 430}, mid: {part: "NVIDIA RTX 5070", price: 750}, high: {part: "NVIDIA RTX 5080", price: 1600} },
                     amd:    { low: {part: "AMD RX 9060 XT", price: 430}, mid: {part: "AMD RX 9070", price: 850}, high: {part: "AMD RX 9070 XT", price: 1050} }
                  } },
-    ram:        { icon: "📊", name: "Memory (RAM)",         tiers: { low: {part: "16GB DDR5-6000", price: 90}, mid: {part: "32GB DDR5-6000", price: 160}, high: {part: "64GB DDR5-6000", price: 320} } },
-    storage:    { icon: "💾", name: "Storage (SSD)",        tiers: { low: {part: "1TB NVMe SSD", price: 110}, mid: {part: "2TB NVMe SSD", price: 210}, high: {part: "4TB NVMe SSD", price: 450} } },
-    psu:        { icon: "⚡", name: "Power Supply (PSU)",    tiers: { low: {part: "550W Bronze", price: 80}, mid: {part: "750W Gold", price: 140}, high: {part: "1000W Gold", price: 230} } },
+    ram:        { icon: "📊", name: "Memory (RAM)",         note: "DDR5 pricing is highly volatile right now due to a global supply shortage — final price confirmed at quote.", tiers: { low: {part: "16GB DDR5-6000", price: 240}, mid: {part: "32GB DDR5-6000", price: 460}, high: {part: "64GB DDR5-6000", price: 1200} } },
+    storage:    { icon: "💾", name: "Storage (SSD)",        note: "SSD/NAND pricing is fluctuating sharply right now — final price confirmed at quote.", tiers: { low: {part: "1TB NVMe SSD", price: 170}, mid: {part: "2TB NVMe SSD", price: 320}, high: {part: "4TB NVMe SSD", price: 700} } },
+    psu:        { icon: "⚡", name: "Power Supply (PSU)",    tiers: { low: {part: "550W Bronze", price: 80}, mid: {part: "750W Gold", price: 150}, high: {part: "1000W Gold", price: 280} } },
     case:       { icon: "🗄️", name: "Case",                 tiers: { low: {part: "Mid-Tower ATX", price: 80}, mid: {part: "Airflow ATX", price: 150}, high: {part: "Premium ATX", price: 280} } },
-    cooling:    { icon: "❄️", name: "CPU Cooling",          tiers: { low: {part: "Air Cooler", price: 45}, mid: {part: "240mm AIO", price: 130}, high: {part: "360mm AIO", price: 220} } }
+    cooling:    { icon: "❄️", name: "CPU Cooling",          tiers: { low: {part: "Air Cooler", price: 50}, mid: {part: "240mm AIO", price: 120}, high: {part: "360mm AIO", price: 180} } }
   },
   Intel: {
     cpu:        { icon: "🧠", name: "Processor (CPU)",      tiers: { low: {part: "Core Ultra 5 225", price: 300}, mid: {part: "Core Ultra 7 265K", price: 520}, high: {part: "Core Ultra 9 285K", price: 820} } },
@@ -297,11 +299,11 @@ const PARTS = {
                     nvidia: { low: {part: "NVIDIA RTX 5060", price: 430}, mid: {part: "NVIDIA RTX 5070", price: 750}, high: {part: "NVIDIA RTX 5080", price: 1600} },
                     amd:    { low: {part: "AMD RX 9060 XT", price: 430}, mid: {part: "AMD RX 9070", price: 850}, high: {part: "AMD RX 9070 XT", price: 1050} }
                  } },
-    ram:        { icon: "📊", name: "Memory (RAM)",         tiers: { low: {part: "16GB DDR5-6000", price: 90}, mid: {part: "32GB DDR5-6000", price: 160}, high: {part: "64GB DDR5-6000", price: 320} } },
-    storage:    { icon: "💾", name: "Storage (SSD)",        tiers: { low: {part: "1TB NVMe SSD", price: 110}, mid: {part: "2TB NVMe SSD", price: 210}, high: {part: "4TB NVMe SSD", price: 450} } },
-    psu:        { icon: "⚡", name: "Power Supply (PSU)",    tiers: { low: {part: "550W Bronze", price: 80}, mid: {part: "750W Gold", price: 140}, high: {part: "1000W Gold", price: 230} } },
+    ram:        { icon: "📊", name: "Memory (RAM)",         note: "DDR5 pricing is highly volatile right now due to a global supply shortage — final price confirmed at quote.", tiers: { low: {part: "16GB DDR5-6000", price: 240}, mid: {part: "32GB DDR5-6000", price: 460}, high: {part: "64GB DDR5-6000", price: 1200} } },
+    storage:    { icon: "💾", name: "Storage (SSD)",        note: "SSD/NAND pricing is fluctuating sharply right now — final price confirmed at quote.", tiers: { low: {part: "1TB NVMe SSD", price: 170}, mid: {part: "2TB NVMe SSD", price: 320}, high: {part: "4TB NVMe SSD", price: 700} } },
+    psu:        { icon: "⚡", name: "Power Supply (PSU)",    tiers: { low: {part: "550W Bronze", price: 80}, mid: {part: "750W Gold", price: 150}, high: {part: "1000W Gold", price: 280} } },
     case:       { icon: "🗄️", name: "Case",                 tiers: { low: {part: "Mid-Tower ATX", price: 80}, mid: {part: "Airflow ATX", price: 150}, high: {part: "Premium ATX", price: 280} } },
-    cooling:    { icon: "❄️", name: "CPU Cooling",          tiers: { low: {part: "Air Cooler", price: 45}, mid: {part: "240mm AIO", price: 130}, high: {part: "360mm AIO", price: 220} } }
+    cooling:    { icon: "❄️", name: "CPU Cooling",          tiers: { low: {part: "Air Cooler", price: 50}, mid: {part: "240mm AIO", price: 120}, high: {part: "360mm AIO", price: 180} } }
   }
 };
 
@@ -350,8 +352,11 @@ function renderComponents() {
       html += `</div>`;
     }
     html += `<span class="req">Required</span>
-      </div>
-      <div class="tier-grid">`;
+      </div>`;
+    if (c.note) {
+      html += `<div class="component-note"><span class="note-icon">⚠️</span><span>${c.note}</span></div>`;
+    }
+    html += `<div class="tier-grid">`;
     const tiers = getTiers(c);
     TIER_ORDER.forEach(tier => {
       const t = tiers[tier];
