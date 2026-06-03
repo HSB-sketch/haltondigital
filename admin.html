@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Parts Admin | Halton Digital & AI</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<style>
+.admin-wrap { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem 5rem; }
+h1 { font-family: 'Orbitron', sans-serif; }
+
+/* Login gate */
+#gate { max-width: 380px; margin: 5rem auto; text-align: center; }
+#gate .box {
+  background: linear-gradient(135deg, var(--ink2) 0%, rgba(26,31,58,0.5) 100%);
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 2.5rem 2rem;
+}
+#gate h2 { font-family: 'Orbitron', sans-serif; margin-bottom: 1.5rem; }
+#gate input {
+  width: 100%; padding: 0.85rem 1rem; margin-bottom: 1rem; border-radius: var(--radius);
+  border: 1px solid var(--border); background: var(--ink); color: #fff; font-size: 1rem;
+}
+#gate input:focus { outline: none; border-color: var(--cyan); }
+#gate button {
+  width: 100%; padding: 0.85rem; background: var(--cyan); color: var(--ink); border: none;
+  border-radius: var(--radius); font-weight: 700; font-size: 1rem; cursor: pointer;
+}
+#gate .err { color: #ff6b6b; font-size: 0.85rem; min-height: 1.2em; margin-top: 0.5rem; }
+
+#panel { display: none; }
+#panel.active { display: block; }
+
+.toolbar {
+  display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;
+  position: sticky; top: 0; z-index: 10;
+  background: rgba(10,14,30,0.95); backdrop-filter: blur(8px);
+  padding: 1rem 0; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border);
+}
+.toolbar .save-btn {
+  padding: 0.75rem 1.5rem; background: var(--cyan); color: var(--ink); border: none;
+  border-radius: var(--radius); font-weight: 700; cursor: pointer; font-size: 0.95rem;
+}
+.toolbar .save-btn:hover { background: var(--cyan2); }
+.toolbar .status { font-size: 0.85rem; color: var(--success); }
+
+.platform-section { margin-bottom: 3rem; }
+.platform-section > h2 {
+  font-family: 'Orbitron', sans-serif; color: var(--cyan);
+  border-bottom: 2px solid var(--cyan); padding-bottom: 0.5rem; margin-bottom: 1.5rem;
+}
+.comp {
+  background: linear-gradient(135deg, rgba(0,217,255,0.05) 0%, transparent 100%);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.25rem 1.5rem; margin-bottom: 1.25rem;
+}
+.comp h3 { font-family: 'Orbitron', sans-serif; font-size: 1rem; margin-bottom: 1rem; }
+.tier-row { display: grid; grid-template-columns: 90px 1fr 130px; gap: 1rem; align-items: center; margin-bottom: 0.75rem; }
+.tier-row label { font-size: 0.8rem; color: var(--cyan); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+.tier-row input { padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid var(--border); background: var(--ink); color: #fff; font-size: 0.9rem; }
+.tier-row input:focus { outline: none; border-color: var(--cyan); }
+.tier-row .price-wrap { position: relative; }
+.tier-row .price-wrap::before { content: '$'; position: absolute; left: 0.7rem; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.4); }
+.tier-row .price-wrap input { width: 100%; padding-left: 1.5rem; }
+.brand-head { font-size: 0.8rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 1px; margin: 1rem 0 0.5rem; font-weight: 700; }
+.note-row { margin-top: 1rem; }
+.note-row label { display: block; font-size: 0.8rem; color: rgba(255,200,120,0.9); margin-bottom: 0.4rem; }
+.note-row textarea { width: 100%; padding: 0.6rem 0.8rem; border-radius: 8px; border: 1px solid var(--border); background: var(--ink); color: #fff; font-size: 0.85rem; resize: vertical; min-height: 3em; }
+.note-row textarea:focus { outline: none; border-color: var(--cyan); }
+.help { background: rgba(0,217,255,0.08); border: 1px solid rgba(0,217,255,0.25); border-radius: var(--radius); padding: 1.25rem 1.5rem; margin-bottom: 2rem; font-size: 0.9rem; line-height: 1.6; }
+.help strong { color: var(--cyan); }
+@media (max-width: 640px) { .tier-row { grid-template-columns: 70px 1fr; } .tier-row .price-wrap { grid-column: 2; } }
+</style>
+</head>
+<body>
+<div class="admin-wrap">
+
+  <!-- Login gate -->
+  <div id="gate">
+    <div class="box">
+      <h2>Parts Admin</h2>
+      <input type="password" id="pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPw()">
+      <button onclick="checkPw()">Unlock</button>
+      <div class="err" id="gateErr"></div>
+    </div>
+  </div>
+
+  <!-- Admin panel -->
+  <div id="panel">
+    <h1>Parts &amp; Prices</h1>
+    <div class="help">
+      Edit any part name or price below. When done, click <strong>Download parts.json</strong>, then upload that file to your GitHub repo (replacing the old <strong>parts.json</strong>). The live builder updates after the push deploys.<br>
+      Prices are numbers only (no $ or commas). Leave a part name blank to show "To be added" on the builder.
+    </div>
+
+    <div class="toolbar">
+      <button class="save-btn" onclick="downloadJson()">⬇ Download parts.json</button>
+      <span class="status" id="status"></span>
+    </div>
+
+    <div id="form"></div>
+
+    <div class="toolbar" style="position: static; border-top: 1px solid var(--border); border-bottom: none; margin-top: 1rem;">
+      <button class="save-btn" onclick="downloadJson()">⬇ Download parts.json</button>
+      <span class="status" id="status2"></span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+/* ----------------------------------------------------------
+   ADMIN PASSWORD — change this to whatever you want.
+   NOTE: this only hides the page from casual visitors. It is
+   NOT real security — anyone technical can view it in the page
+   source. Do not reuse a password you use anywhere else.
+   ---------------------------------------------------------- */
+const ADMIN_PASSWORD = "halton2026";
+
+const TIER_ORDER = ["low", "mid", "high"];
+const TIER_LABELS = { low: "Budget", mid: "Mid-Range", high: "High-End" };
+const BRAND_LABELS = { nvidia: "NVIDIA", amd: "AMD" };
+let DATA = null;
+
+function checkPw() {
+  const val = document.getElementById('pw').value;
+  if (val === ADMIN_PASSWORD) {
+    sessionStorage.setItem('admin_ok', '1');
+    showPanel();
+  } else {
+    document.getElementById('gateErr').textContent = 'Incorrect password.';
+  }
+}
+
+function showPanel() {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('panel').classList.add('active');
+  loadData();
+}
+
+async function loadData() {
+  try {
+    const res = await fetch('parts.json?t=' + Date.now(), {cache: 'no-store'});
+    DATA = await res.json();
+  } catch (e) {
+    setStatus('Could not load parts.json — starting from blank. (' + e.message + ')', true);
+    DATA = {};
+  }
+  renderForm();
+}
+
+function inputFor(path, value, isPrice) {
+  const v = (value === undefined || value === null) ? '' : value;
+  if (isPrice) {
+    return `<div class="price-wrap"><input type="number" min="0" step="1" value="${v}" data-path="${path}" data-type="price"></div>`;
+  }
+  return `<input type="text" value="${String(v).replace(/"/g,'&quot;')}" data-path="${path}" data-type="text">`;
+}
+
+function renderTierRows(tiersPath, tiersObj) {
+  let html = '';
+  TIER_ORDER.forEach(tier => {
+    const t = (tiersObj && tiersObj[tier]) ? tiersObj[tier] : {};
+    html += `<div class="tier-row">
+      <label>${TIER_LABELS[tier]}</label>
+      ${inputFor(tiersPath + '.' + tier + '.part', t.part, false)}
+      ${inputFor(tiersPath + '.' + tier + '.price', t.price, true)}
+    </div>`;
+  });
+  return html;
+}
+
+function renderForm() {
+  const wrap = document.getElementById('form');
+  let html = '';
+  for (const plat of Object.keys(DATA)) {
+    html += `<div class="platform-section"><h2>${plat}</h2>`;
+    const comps = DATA[plat];
+    for (const key of Object.keys(comps)) {
+      const c = comps[key];
+      html += `<div class="comp"><h3>${c.icon || ''} ${c.name || key}</h3>`;
+      if (c.isGpu && c.brands) {
+        for (const brand of Object.keys(c.brands)) {
+          html += `<div class="brand-head">${BRAND_LABELS[brand] || brand}</div>`;
+          html += renderTierRows(`${plat}.${key}.brands.${brand}`, c.brands[brand]);
+        }
+      } else {
+        html += renderTierRows(`${plat}.${key}.tiers`, c.tiers);
+      }
+      if ('note' in c || key === 'ram' || key === 'storage') {
+        html += `<div class="note-row"><label>⚠️ Note (shown under this component — leave blank for none)</label>
+          <textarea data-path="${plat}.${key}.note" data-type="note">${(c.note||'').replace(/</g,'&lt;')}</textarea></div>`;
+      }
+      html += `</div>`;
+    }
+    html += `</div>`;
+  }
+  wrap.innerHTML = html;
+}
+
+function setNested(obj, path, value) {
+  const keys = path.split('.');
+  let o = obj;
+  for (let i = 0; i < keys.length - 1; i++) {
+    if (!(keys[i] in o)) o[keys[i]] = {};
+    o = o[keys[i]];
+  }
+  o[keys[keys.length - 1]] = value;
+}
+
+function collectForm() {
+  document.querySelectorAll('[data-path]').forEach(el => {
+    const path = el.getAttribute('data-path');
+    const type = el.getAttribute('data-type');
+    let val = el.value;
+    if (type === 'price') {
+      val = val === '' ? 0 : Number(val);
+      if (isNaN(val)) val = 0;
+    } else if (type === 'note') {
+      val = val.trim();
+    }
+    setNested(DATA, path, val);
+  });
+  // Remove empty notes so they don't render
+  for (const plat of Object.keys(DATA)) {
+    for (const key of Object.keys(DATA[plat])) {
+      if (DATA[plat][key].note === '') delete DATA[plat][key].note;
+    }
+  }
+}
+
+function downloadJson() {
+  collectForm();
+  const blob = new Blob([JSON.stringify(DATA, null, 2)], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'parts.json';
+  document.body.appendChild(a); a.click(); a.remove();
+  URL.revokeObjectURL(url);
+  setStatus('✓ Downloaded. Now upload parts.json to your GitHub repo.');
+}
+
+function setStatus(msg, isErr) {
+  ['status','status2'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.textContent = msg; el.style.color = isErr ? '#ff6b6b' : 'var(--success)'; }
+  });
+}
+
+// Stay unlocked within the same tab session
+if (sessionStorage.getItem('admin_ok') === '1') { showPanel(); }
+</script>
+</body>
+</html>

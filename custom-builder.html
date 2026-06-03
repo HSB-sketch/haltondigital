@@ -278,44 +278,31 @@
    with its own low/mid/high tiers. Users toggle the brand on the page.
    Edit gpu.brands.nvidia.* and gpu.brands.amd.* below.
    ========================================================================= */
-const PARTS = {
-  AMD: {
-    cpu:        { icon: "🧠", name: "Processor (CPU)",      tiers: { low: {part: "Ryzen 5 7600", price: 280}, mid: {part: "Ryzen 7 9800X3D", price: 640}, high: {part: "Ryzen 9 9950X3D", price: 960} } },
-    motherboard:{ icon: "🔌", name: "Motherboard",          tiers: { low: {part: "B650M (AM5)", price: 180}, mid: {part: "B850 (AM5)", price: 280}, high: {part: "X870E (AM5)", price: 520} } },
-    gpu:        { icon: "🎮", name: "Graphics Card (GPU)",  isGpu: true, brands: {
-                    nvidia: { low: {part: "NVIDIA RTX 5060", price: 430}, mid: {part: "NVIDIA RTX 5070", price: 750}, high: {part: "NVIDIA RTX 5080", price: 1600} },
-                    amd:    { low: {part: "AMD RX 9060 XT", price: 430}, mid: {part: "AMD RX 9070", price: 850}, high: {part: "AMD RX 9070 XT", price: 1050} }
-                 } },
-    ram:        { icon: "📊", name: "Memory (RAM)",         note: "DDR5 pricing is highly volatile right now due to a global supply shortage — final price confirmed at quote.", tiers: { low: {part: "16GB DDR5-6000", price: 240}, mid: {part: "32GB DDR5-6000", price: 460}, high: {part: "64GB DDR5-6000", price: 1200} } },
-    storage:    { icon: "💾", name: "Storage (SSD)",        note: "SSD/NAND pricing is fluctuating sharply right now — final price confirmed at quote.", tiers: { low: {part: "1TB NVMe SSD", price: 170}, mid: {part: "2TB NVMe SSD", price: 320}, high: {part: "4TB NVMe SSD", price: 700} } },
-    psu:        { icon: "⚡", name: "Power Supply (PSU)",    tiers: { low: {part: "550W Bronze", price: 80}, mid: {part: "750W Gold", price: 150}, high: {part: "1000W Gold", price: 280} } },
-    case:       { icon: "🗄️", name: "Case",                 tiers: { low: {part: "Mid-Tower ATX", price: 80}, mid: {part: "Airflow ATX", price: 150}, high: {part: "Premium ATX", price: 280} } },
-    cooling:    { icon: "❄️", name: "CPU Cooling",          tiers: { low: {part: "Air Cooler", price: 50}, mid: {part: "240mm AIO", price: 120}, high: {part: "360mm AIO", price: 180} } }
-  },
-  Intel: {
-    cpu:        { icon: "🧠", name: "Processor (CPU)",      tiers: { low: {part: "Core Ultra 5 225", price: 300}, mid: {part: "Core Ultra 7 265K", price: 520}, high: {part: "Core Ultra 9 285K", price: 820} } },
-    motherboard:{ icon: "🔌", name: "Motherboard",          tiers: { low: {part: "B860M (LGA1851)", price: 220}, mid: {part: "B860 (LGA1851)", price: 300}, high: {part: "Z890 (LGA1851)", price: 560} } },
-    gpu:        { icon: "🎮", name: "Graphics Card (GPU)",  isGpu: true, brands: {
-                    nvidia: { low: {part: "NVIDIA RTX 5060", price: 430}, mid: {part: "NVIDIA RTX 5070", price: 750}, high: {part: "NVIDIA RTX 5080", price: 1600} },
-                    amd:    { low: {part: "AMD RX 9060 XT", price: 430}, mid: {part: "AMD RX 9070", price: 850}, high: {part: "AMD RX 9070 XT", price: 1050} }
-                 } },
-    ram:        { icon: "📊", name: "Memory (RAM)",         note: "DDR5 pricing is highly volatile right now due to a global supply shortage — final price confirmed at quote.", tiers: { low: {part: "16GB DDR5-6000", price: 240}, mid: {part: "32GB DDR5-6000", price: 460}, high: {part: "64GB DDR5-6000", price: 1200} } },
-    storage:    { icon: "💾", name: "Storage (SSD)",        note: "SSD/NAND pricing is fluctuating sharply right now — final price confirmed at quote.", tiers: { low: {part: "1TB NVMe SSD", price: 170}, mid: {part: "2TB NVMe SSD", price: 320}, high: {part: "4TB NVMe SSD", price: 700} } },
-    psu:        { icon: "⚡", name: "Power Supply (PSU)",    tiers: { low: {part: "550W Bronze", price: 80}, mid: {part: "750W Gold", price: 150}, high: {part: "1000W Gold", price: 280} } },
-    case:       { icon: "🗄️", name: "Case",                 tiers: { low: {part: "Mid-Tower ATX", price: 80}, mid: {part: "Airflow ATX", price: 150}, high: {part: "Premium ATX", price: 280} } },
-    cooling:    { icon: "❄️", name: "CPU Cooling",          tiers: { low: {part: "Air Cooler", price: 50}, mid: {part: "240mm AIO", price: 120}, high: {part: "360mm AIO", price: 180} } }
-  }
-};
+let PARTS = {};  // Loaded from parts.json (edit via admin.html, then upload parts.json to the repo)
 
 const TIER_LABELS = { low: "Budget", mid: "Mid-Range", high: "High-End" };
 const TIER_ORDER = ["low", "mid", "high"];
 const BRAND_LABELS = { nvidia: "NVIDIA", amd: "AMD" };
 
+// Load parts & prices from parts.json on page load
+let partsReady = (async function loadParts() {
+  try {
+    const res = await fetch('parts.json?t=' + Date.now(), {cache: 'no-store'});
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    PARTS = await res.json();
+  } catch (e) {
+    console.error('Could not load parts.json:', e);
+    alert('Sorry, the parts list could not be loaded right now. Please try again later.');
+  }
+})();
+
 let platform = null;
 let selections = {};      // { componentKey: "low" | "mid" | "high" }
 let gpuBrand = "nvidia";  // currently selected GPU brand
 
-function selectPlatform(p, el) {
+async function selectPlatform(p, el) {
+  await partsReady;
+  if (!PARTS[p]) { return; }
   platform = p;
   selections = {};
   gpuBrand = "nvidia";
